@@ -3,7 +3,12 @@ import fs from "fs";
 import http from "http";
 import path from "path";
 import { Server as IOServer } from "socket.io";
-import { loadQuestions } from "./csv";
+import { listQuestionFiles, loadQuestionFile, loadQuestions } from "./csv";
+import {
+  beginFastMoneyReveal, buzzFastMoney, editFastMoneyAnswers, expireFastMoney, gotoFastMoneyQuestion,
+  loadFastMoney, nextFastMoneyPlayer, nextFastMoneyQuestion, passFastMoneyQuestion, recordFastMoneyAnswer, recordFastMoneyAnswers, resetFastMoney,
+  revealNextFastMoneyAnswer, startFastMoney, stopFastMoney,
+} from "./fast-money";
 import { Store } from "./persist";
 import {
   addBuzz,
@@ -11,21 +16,27 @@ import {
   adjustScore,
   awardPotToTeam,
   clearStrikes,
+  endGame,
   endRound,
   gotoQuestion,
+  hideTimer,
   makeInitialState,
   migrateState,
   nextQuestion,
   prevQuestion,
   resetGame,
+  resumeGame,
   revealAnswer,
   setControllingTeam,
+  setMode,
+  setQuestions,
   setTeamName,
   startRound,
+  startTimer,
   undoLastAward,
   unrevealAnswer,
 } from "./state";
-import { GameState } from "./types";
+import { FastMoneyAnswerInput, GameMode, GameState } from "./types";
 
 const ROOT = path.resolve(__dirname, "..");
 const PUBLIC = path.join(ROOT, "public");
@@ -42,17 +53,17 @@ const DISPLAY_PORT = Number(process.env.DISPLAY_PORT ?? 3000);
 const ADMIN_PORT = Number(process.env.ADMIN_PORT ?? 4000);
 
 const store = new Store(DB_PATH);
-let questions = loadQuestions(CSV_PATH);
+const questions = loadQuestions(CSV_PATH);
 
 let state: GameState;
 const saved = store.load();
 if (saved) {
-  state = migrateState(saved);
+  state = migrateState(saved, path.basename(CSV_PATH));
   console.log(
     `[persist] restored state from ${DB_PATH}: Q${state.currentQuestionIndex + 1}/${state.questions.length}, scores ${state.teams[0].score}/${state.teams[1].score}`
   );
 } else {
-  state = makeInitialState(questions);
+  state = makeInitialState(questions, path.basename(CSV_PATH));
   store.save(state);
   console.log(`[persist] no saved state; initialized from CSV at ${DB_PATH}`);
 }
@@ -99,6 +110,25 @@ function broadcast() {
 }
 
 type Cmd =
+  | { type: "set_mode"; mode: GameMode }
+  | { type: "select_csv"; mode: GameMode; filename: string }
+  | { type: "fm_start" }
+  | { type: "fm_question"; index: number }
+  | { type: "fm_pass" }
+  | { type: "fm_next" }
+  | { type: "fm_stop" }
+  | { type: "fm_buzz" }
+  | ({ type: "fm_answer"; index: number } & FastMoneyAnswerInput)
+  | { type: "fm_answers"; answers: FastMoneyAnswerInput[] }
+  | { type: "fm_begin_reveal" }
+  | { type: "fm_reveal_next" }
+  | { type: "fm_next_player" }
+  | { type: "fm_edit_answers" }
+  | { type: "fm_reset" }
+  | { type: "end_game" }
+  | { type: "resume_game" }
+  | { type: "start_timer" }
+  | { type: "hide_timer" }
   | { type: "start_round" }
   | { type: "end_round" }
   | { type: "next_question" }
@@ -123,19 +153,37 @@ type Cmd =
   | { type: "set_instructions_visible"; visible: boolean }
   | { type: "set_instructions_page"; page: number };
 
+const GAMEPLAY_COMMANDS = new Set<Cmd["type"]>([
+  "start_round", "end_round", "next_question", "prev_question", "goto_question",
+  "reveal_answer", "unreveal_answer", "strike", "buzz", "clear_strikes",
+  "award_pot", "undo_award", "adjust_score", "set_team_name",
+  "set_controlling_team", "show_question",
+]);
+
 adminIo.on("connection", (socket) => {
+  const sendFiles = () => {
+    try {
+      socket.emit("csv_files", listQuestionFiles(ROOT));
+    } catch (err) {
+      console.error("[csv] failed to list question files", err);
+      socket.emit("error_msg", "Unable to list CSV files on the server.");
+    }
+  };
+  socket.on("list_csv_files", sendFiles);
+  sendFiles();
   socket.emit("state", state);
   socket.emit("hello", {
     questionCount: state.questions.length,
-    csvPath: CSV_PATH,
+    csvPath: state.questionFile,
     dbPath: DB_PATH,
   });
 
   socket.on("cmd", (cmd: Cmd) => {
     try {
-      handle(cmd);
+      const warning = handle(cmd);
       persist();
       broadcast();
+      if (warning) socket.emit("error_msg", warning);
     } catch (err) {
       console.error("[cmd] error", cmd, err);
       socket.emit("error_msg", String((err as Error).message ?? err));
@@ -144,7 +192,76 @@ adminIo.on("connection", (socket) => {
 });
 
 function handle(cmd: Cmd) {
+  if (state.mode !== "standard" && (GAMEPLAY_COMMANDS.has(cmd.type) || cmd.type === "end_game" || cmd.type === "resume_game")) {
+    throw new Error("Switch to Standard mode to use standard game controls.");
+  }
+  if (state.gameOver && GAMEPLAY_COMMANDS.has(cmd.type)) {
+    throw new Error("The game has ended. Resume the game to change scores or continue playing.");
+  }
   switch (cmd.type) {
+    case "set_mode":
+      setMode(state, cmd.mode);
+      break;
+    case "select_csv":
+      if (cmd.mode !== state.mode) throw new Error("The mode changed. Choose the CSV again.");
+      selectQuestionFile(cmd.filename);
+      break;
+    case "fm_start":
+      startFastMoney(state);
+      break;
+    case "fm_question":
+      gotoFastMoneyQuestion(state, cmd.index);
+      break;
+    case "fm_pass":
+      passFastMoneyQuestion(state);
+      break;
+    case "fm_next":
+      nextFastMoneyQuestion(state);
+      break;
+    case "fm_stop":
+      stopFastMoney(state);
+      break;
+    case "fm_buzz":
+      buzzFastMoney(state);
+      break;
+    case "fm_answer":
+      if (!recordFastMoneyAnswer(state, cmd.index, cmd.text, cmd.answerIndex, cmd.points, cmd.result)) {
+        return "Duplicate answer! Player 2 must give a different answer.";
+      }
+      break;
+    case "fm_answers":
+      if (!recordFastMoneyAnswers(state, cmd.answers)) {
+        return "Duplicate answer! Player 2 must give different answers. No answers were saved.";
+      }
+      break;
+    case "fm_begin_reveal":
+      beginFastMoneyReveal(state);
+      break;
+    case "fm_reveal_next":
+      revealNextFastMoneyAnswer(state);
+      break;
+    case "fm_next_player":
+      nextFastMoneyPlayer(state);
+      break;
+    case "fm_edit_answers":
+      editFastMoneyAnswers(state);
+      break;
+    case "fm_reset":
+      if (state.mode !== "fast_money") throw new Error("Switch to Fast Money first.");
+      resetFastMoney(state);
+      break;
+    case "end_game":
+      endGame(state);
+      break;
+    case "resume_game":
+      resumeGame(state);
+      break;
+    case "start_timer":
+      startTimer(state);
+      break;
+    case "hide_timer":
+      hideTimer(state);
+      break;
     case "start_round":
       startRound(state);
       break;
@@ -194,7 +311,7 @@ function handle(cmd: Cmd) {
       const names: [string, string] = [state.teams[0].name, state.teams[1].name];
       const audio = state.audio;
       const instructions = state.instructions;
-      state = resetGame(state, questions);
+      state = resetGame(state, state.questions);
       state.teams[0].name = names[0];
       state.teams[1].name = names[1];
       state.audio = audio;
@@ -205,13 +322,9 @@ function handle(cmd: Cmd) {
       state.reveal.questionVisible = cmd.visible;
       break;
     case "reload_csv": {
-      const names: [string, string] = [state.teams[0].name, state.teams[1].name];
-      const audio = state.audio;
-      questions = loadQuestions(CSV_PATH);
-      state = resetGame(state, questions);
-      state.teams[0].name = names[0];
-      state.teams[1].name = names[1];
-      state.audio = audio;
+      const filename = state.mode === "fast_money" ? state.fastMoney.questionFile : state.questionFile;
+      if (!filename) throw new Error("Select a CSV file first.");
+      selectQuestionFile(filename);
       break;
     }
     case "set_muted":
@@ -233,6 +346,19 @@ function handle(cmd: Cmd) {
     }
   }
 }
+
+function selectQuestionFile(filename: string) {
+  const loaded = loadQuestionFile(ROOT, filename);
+  if (state.mode === "fast_money") loadFastMoney(state, loaded, filename);
+  else setQuestions(state, loaded, filename);
+}
+
+setInterval(() => {
+  if (expireFastMoney(state)) {
+    persist();
+    broadcast();
+  }
+}, 100);
 
 // Graceful shutdown — flush state and close DB cleanly on signals.
 function shutdown(signal: string) {

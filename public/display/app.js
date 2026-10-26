@@ -1,4 +1,4 @@
-/* global io */
+/* global io, renderFastMoneyDisplay */
 const socket = io();
 
 const els = {
@@ -6,6 +6,14 @@ const els = {
   questionBanner: document.getElementById("question-banner"),
   questionText: document.getElementById("question-text"),
   board: document.getElementById("board"),
+  timer: document.getElementById("timer"),
+  timerValue: document.getElementById("timer-value"),
+  gameResult: document.getElementById("game-result"),
+  resultTitle: document.getElementById("result-title"),
+  resultWinner: document.getElementById("result-winner"),
+  resultTeams: [0, 1].map((i) => document.getElementById(`result-team-${i}`)),
+  resultNames: [0, 1].map((i) => document.getElementById(`result-name-${i}`)),
+  resultScores: [0, 1].map((i) => document.getElementById(`result-score-${i}`)),
   pot: document.getElementById("pot"),
   strikes: document.getElementById("strikes"),
   nameLeft: document.getElementById("name-left"),
@@ -209,6 +217,9 @@ function render(state) {
   // Diff sounds before mutating lastState
   fireSoundDiffs(state);
   lastState = state;
+  renderFastMoneyDisplay(state);
+  updateTimer();
+  applyGameResult(state);
 
   els.nameLeft.textContent = state.teams[0].name.toUpperCase();
   els.nameRight.textContent = state.teams[1].name.toUpperCase();
@@ -216,7 +227,9 @@ function render(state) {
   els.numRight.textContent = state.teams[1].score;
 
   const q = state.questions[state.currentQuestionIndex];
-  const playing = state.round.kind === "playing";
+  const fast = state.mode === "fast_money";
+  els.stage.hidden = fast;
+  const playing = !fast && state.round.kind === "playing";
 
   els.stage.classList.toggle("idle", !playing);
 
@@ -231,8 +244,7 @@ function render(state) {
 
   els.board.innerHTML = "";
   const answers = q?.answers ?? [];
-  const slotCount = Math.max(8, answers.length);
-  for (let i = 0; i < slotCount; i++) {
+  for (let i = 0; i < answers.length; i++) {
     const a = answers[i];
     const slot = document.createElement("div");
     slot.className = "slot";
@@ -254,11 +266,36 @@ function render(state) {
     lastBuzzFlash = buzzFlash;
     flashBuzz();
   }
-  if (!playing) { lastStrikeFlash = 0; lastBuzzFlash = 0; }
+  if (!playing && !fast) { lastStrikeFlash = 0; lastBuzzFlash = 0; }
 
   applyAudioState(state);
   applyInstructions(state);
 }
+
+function applyGameResult(state) {
+  els.gameResult.hidden = !state.gameOver || state.mode === "fast_money";
+  if (els.gameResult.hidden) return;
+  const [left, right] = state.teams;
+  const tied = left.score === right.score;
+  els.resultTitle.textContent = tied ? "IT'S A TIE!" : "WINNER";
+  els.resultWinner.textContent = tied ? "HONORS EVEN" : (left.score > right.score ? left.name : right.name);
+  state.teams.forEach((team, i) => {
+    els.resultNames[i].textContent = team.name;
+    els.resultScores[i].textContent = team.score;
+    els.resultTeams[i].classList.toggle("is-winner", tied || team.score > state.teams[1 - i].score);
+  });
+}
+
+function updateTimer() {
+  const endsAt = lastState?.mode === "fast_money"
+    ? (lastState.fastMoney?.endsAt ?? null) : (lastState?.timer?.endsAt ?? null);
+  els.timer.hidden = endsAt === null;
+  if (endsAt === null) return;
+  const seconds = Math.max(0, Math.ceil((endsAt - Date.now()) / 1000));
+  els.timerValue.textContent = `0:${String(seconds).padStart(2, "0")}`;
+  els.timer.classList.toggle("is-expired", seconds === 0);
+}
+setInterval(updateTimer, 100);
 
 function applyInstructions(state) {
   const ins = state.instructions;
@@ -274,6 +311,7 @@ function applyInstructions(state) {
 }
 
 function fireSoundDiffs(state) {
+  if (state.mode === "fast_money") return;
   if (!lastState) {
     // First state — initialize the revealed map without firing sounds
     const q = state.questions[state.currentQuestionIndex];

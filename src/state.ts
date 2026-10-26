@@ -1,7 +1,12 @@
-import { GameState, Question, Round } from "./types";
+import { GameMode, GameState, Question, Round } from "./types";
+import { makeFastMoney } from "./fast-money";
 
-export function makeInitialState(questions: Question[]): GameState {
+export function makeInitialState(questions: Question[], questionFile: string | null = null): GameState {
   return {
+    mode: "standard",
+    questionFile,
+    fastMoney: makeFastMoney(),
+    gameOver: false,
     teams: [
       { name: "Team 1", score: 0 },
       { name: "Team 2", score: 0 },
@@ -12,14 +17,36 @@ export function makeInitialState(questions: Question[]): GameState {
     reveal: { questionVisible: false },
     audio: { muted: false, themePlaying: true, themeVolume: 0.7 },
     instructions: { visible: false, page: 0, total: INSTRUCTIONS_TOTAL },
+    timer: { endsAt: null },
     lastAward: null,
   };
 }
 
 export const INSTRUCTIONS_TOTAL = 4;
 
-export function migrateState(state: GameState): GameState {
+export function migrateState(state: GameState, defaultQuestionFile: string | null = null): GameState {
   // Backfill blocks for states persisted before these fields existed.
+  if (!state.mode) state.mode = "standard";
+  if (!state.questionFile) state.questionFile = defaultQuestionFile;
+  if (!state.fastMoney) state.fastMoney = makeFastMoney();
+  for (const answer of state.fastMoney.answers.flat()) {
+    if (!answer.result) {
+      answer.result = answer.recorded && answer.text === "Pass"
+        ? "pass" : answer.recorded && answer.points === 0 ? "miss" : "answer";
+    }
+  }
+  if (!state.fastMoney.questionStatus) {
+    const fm = state.fastMoney;
+    const statuses = (player: 0 | 1): typeof fm.questionStatus[0] =>
+      fm.answers[player].map((answer, i) => {
+        if (answer.recorded) return answer.text === "Pass" ? "passed" : "answered";
+        return player === fm.player && fm.phase === "asking" && i < fm.questionIndex ? "answered" : "unasked";
+      });
+    fm.questionStatus = [statuses(0), statuses(1)];
+  }
+  if (typeof state.gameOver !== "boolean") {
+    state.gameOver = false;
+  }
   if (!state.audio) {
     state.audio = { muted: false, themePlaying: true, themeVolume: 0.7 };
   } else if (typeof state.audio.themeVolume !== "number") {
@@ -39,7 +66,49 @@ export function migrateState(state: GameState): GameState {
   if (typeof state.lastAward === "undefined") {
     state.lastAward = null;
   }
+  if (!state.timer) {
+    state.timer = { endsAt: null };
+  }
   return state;
+}
+
+export function startTimer(state: GameState, now = Date.now()): void {
+  state.timer.endsAt = now + 30_000;
+}
+
+export function hideTimer(state: GameState): void {
+  state.timer.endsAt = null;
+}
+
+export function setMode(state: GameState, mode: GameMode): void {
+  if (mode !== "standard" && mode !== "fast_money") throw new Error("Invalid game mode.");
+  if (state.mode === mode) return;
+  if (state.fastMoney.phase === "asking") {
+    state.fastMoney.phase = "scoring";
+    state.fastMoney.endsAt = null;
+  }
+  hideTimer(state);
+  state.instructions.visible = false;
+  state.mode = mode;
+}
+
+export function setQuestions(state: GameState, questions: Question[], filename: string): void {
+  state.questions = cloneQuestions(questions);
+  state.questionFile = filename;
+  state.currentQuestionIndex = questions.length ? 0 : -1;
+  endRound(state);
+  hideTimer(state);
+  state.gameOver = false;
+}
+
+export function endGame(state: GameState): void {
+  state.gameOver = true;
+  hideTimer(state);
+  state.instructions.visible = false;
+}
+
+export function resumeGame(state: GameState): void {
+  state.gameOver = false;
 }
 
 export function cloneQuestions(questions: Question[]): Question[] {
@@ -181,7 +250,9 @@ export function prevQuestion(state: GameState): void {
 }
 
 export function resetGame(state: GameState, questions: Question[]): GameState {
-  return makeInitialState(questions);
+  const fresh = makeInitialState(questions, state.questionFile);
+  fresh.fastMoney = makeFastMoney(state.fastMoney.questions, state.fastMoney.questionFile);
+  return fresh;
 }
 
 export function setRound(state: GameState, round: Round): void {

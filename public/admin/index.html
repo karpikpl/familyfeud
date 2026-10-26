@@ -18,6 +18,10 @@
         <button id="reload" class="btn btn-ghost">Reload CSV</button>
         <button id="reset"  class="btn btn-warn">Reset Game</button>
       </div>
+      <nav class="mode-switch" aria-label="Game mode">
+        <button class="btn is-active" id="mode-standard" aria-pressed="true">Standard</button>
+        <button class="btn" id="mode-fast-money" aria-pressed="false">Fast Money</button>
+      </nav>
     </header>
 
     <main class="app">
@@ -31,7 +35,64 @@
       </div>
     </section>
 
-    <section class="teams">
+    <section class="csv-controls" aria-label="Question CSV">
+      <label for="question-file" id="question-file-label">Standard question CSV</label>
+      <div class="csv-controls__row">
+        <select id="question-file"><option value="">Select a CSV...</option></select>
+        <button class="btn" id="refresh-files">Refresh list</button>
+      </div>
+      <p class="game-controls__hint" id="question-file-hint">Changing the CSV clears the round but keeps team scores.</p>
+    </section>
+
+    <section class="fast-admin" id="fast-money-admin" data-mode="fast_money" hidden>
+      <div class="fm-card">
+        <div class="game-controls__head">
+          <strong id="fm-player">Player 1</strong>
+          <span id="fm-phase" class="badge">Setup</span>
+          <span id="fm-timer" class="timer-controls__status" role="timer" aria-label="Fast Money countdown">0:20</span>
+        </div>
+        <p class="game-controls__hint" id="fm-hint">Select a CSV to prepare five questions.</p>
+      </div>
+
+      <div class="fm-card" id="fm-setup">
+        <strong>Five questions, read by the host</strong>
+        <ol class="fm-question-list" id="fm-question-list"></ol>
+        <button class="btn btn-primary big" id="fm-start">Start Player 1 · 20s</button>
+      </div>
+
+      <div class="fm-card" id="fm-asking" hidden>
+        <span class="badge" id="fm-question-number">Question 1 / 5</span>
+        <div class="fm-current-question" id="fm-current-question"></div>
+        <p class="game-controls__hint" id="fm-prior-answer" hidden></p>
+        <div class="timer-controls__buttons">
+          <button class="btn" id="fm-prev">Previous</button>
+          <button class="btn btn-primary" id="fm-next">Next</button>
+        </div>
+        <button class="btn btn-ghost" id="fm-pass">Pass</button>
+        <button class="btn btn-buzz" id="fm-buzz">Duplicate answer buzzer</button>
+        <button class="btn btn-warn" id="fm-stop">Finish questions / Enter answers</button>
+      </div>
+
+      <div class="fm-card" id="fm-scoring" hidden>
+        <strong>Enter answers from the recorder's notes</strong>
+        <p class="game-controls__hint">Match a survey answer or enter custom points. Choose Pass for no answer, or Miss for a wrong answer (red X on reveal). Both score 0. Nothing is shown on TV yet.</p>
+        <div id="fm-responses" class="fm-responses"></div>
+        <button class="btn btn-primary big" id="fm-save-answers">Save Answers</button>
+        <button class="btn btn-primary big" id="fm-begin-reveal">Ready to reveal on TV</button>
+      </div>
+
+      <div class="fm-card" id="fm-revealing" hidden>
+        <strong id="fm-summary">Reveal answers one at a time</strong>
+        <div class="fm-total">Revealed total: <strong id="fm-total">0</strong> / 200</div>
+        <button class="btn btn-primary big" id="fm-reveal-next">Reveal next answer</button>
+        <button class="btn btn-primary big" id="fm-next-player" hidden>Prepare Player 2 · 25s</button>
+        <button class="btn btn-ghost" id="fm-edit">Edit this player's answers</button>
+      </div>
+
+      <button class="btn btn-warn" id="fm-reset">Reset Fast Money</button>
+    </section>
+
+    <section class="teams" data-mode="standard">
       <div class="team" data-team="0">
         <label class="team__label" for="team-name-0">✏️ Tap to rename</label>
         <input class="team__name" id="team-name-0" data-team="0" placeholder="Team name" />
@@ -62,11 +123,11 @@
       </div>
     </section>
 
-    <section class="undo-award" id="undo-award-section" hidden>
+    <section class="undo-award" id="undo-award-section" data-mode="standard" hidden>
       <button class="btn btn-warn big" id="undo-award">↩ Undo last award</button>
     </section>
 
-    <section class="instructions-admin">
+    <section class="instructions-admin" data-mode="standard">
       <div class="instructions-admin__head">
         <strong>📖 Instructions</strong>
         <button class="btn btn-primary" id="ins-toggle">Show on TV</button>
@@ -84,7 +145,7 @@
       </div>
     </section>
 
-    <section class="round">
+    <section class="round" data-mode="standard">
       <div class="round__head">
         <div class="round__nav">
           <button class="btn" id="prev-q">◀</button>
@@ -118,8 +179,29 @@
       </div>
     </section>
 
-    <section class="answers" id="answers">
+    <section class="answers" id="answers" data-mode="standard">
       <div class="answers__empty">Pick a question and start the round.</div>
+    </section>
+
+    <section class="timer-controls" aria-label="30-second timer" data-mode="standard">
+      <div class="timer-controls__head">
+        <strong>30-second timer</strong>
+        <span id="timer-status" class="timer-controls__status" role="timer" aria-label="Countdown">Hidden</span>
+      </div>
+      <div class="timer-controls__buttons">
+        <button class="btn btn-primary" id="start-timer">Start 30s</button>
+        <button class="btn btn-ghost" id="hide-timer" disabled>Hide timer</button>
+      </div>
+    </section>
+
+    <section class="game-controls" aria-label="Finish game" data-mode="standard">
+      <div class="game-controls__head">
+        <strong>Finish game</strong>
+        <span id="game-status" class="badge">In progress</span>
+      </div>
+      <p class="game-controls__hint" id="game-result-summary">Award the final pot before ending the game.</p>
+      <button class="btn btn-warn big" id="end-game">End Game &amp; Show Winner</button>
+      <button class="btn btn-primary big" id="resume-game" hidden>Resume Game</button>
     </section>
 
     <footer class="footer">
@@ -128,6 +210,7 @@
     </main>
 
     <script src="/socket.io/socket.io.js"></script>
+    <script src="fast-money.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

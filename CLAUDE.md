@@ -7,11 +7,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```bash
 npm install          # one-time
 npm run build        # tsc → dist/
+npm test             # build + node --test tests/*.test.js
 npm start            # node dist/server.js  (must run build first)
 npm run dev          # tsc -w + nodemon on dist/, public/, questions.csv
 ```
 
-There are no tests, no linter, and no separate frontend build — `public/` is plain HTML/CSS/JS served as-is. Static frontend changes are picked up on a browser reload (no rebuild needed). TypeScript changes need `npm run build` (or `npm run dev`).
+Tests use Node's built-in runner. There is no linter or separate frontend build — `public/` is plain HTML/CSS/JS served as-is. Static frontend changes are picked up on a browser reload (no rebuild needed). TypeScript changes need `npm run build` (or `npm run dev`).
 
 Override default ports / DB path with env: `DISPLAY_PORT`, `ADMIN_PORT`, `DB_PATH`.
 
@@ -24,7 +25,7 @@ Override default ports / DB path with env: `DISPLAY_PORT`, `ADMIN_PORT`, `DB_PAT
 - **Display server, port 3000** — serves `public/display/`. The audience screen. Read-only over its socket: it only emits `state`, never accepts commands. Also serves the local theme audio file at `/theme.m4a` (mapped to `Family Feud Theme Song - 1 HOUR.m4a` in the project root).
 - **Admin server, port 4000** — serves `public/admin/`. The game master UI (designed for phone). Accepts a typed `cmd` event and broadcasts state changes to *both* socket servers.
 
-There is **one in-memory `state: GameState`** and one `broadcast()` that fans it out to both `displayIo` and `adminIo`. Every command goes through `handle(cmd) → persist() → broadcast()`. Treat the state object as the single source of truth: never mutate it from anywhere except the `handle` switch in `server.ts` (which delegates to pure functions in `src/state.ts`).
+There is **one in-memory `state: GameState`** and one `broadcast()` that fans it out to both `displayIo` and `adminIo`. Every command goes through `handle(cmd) → persist() → broadcast()`. Treat the state object as the single source of truth: never mutate it from anywhere except the `handle` switch in `server.ts` (which delegates to mutators in `src/state.ts` and `src/fast-money.ts`).
 
 ### Command protocol
 
@@ -49,11 +50,17 @@ There's no schema versioning beyond defensive backfills. If you need a structura
 
 ### CSV → questions
 
-`src/csv.ts` parses the question CSV (columns: `question`, `answer`, `points`). Rows with the same `question` text are grouped into one `Question`; answers are sorted highest-points first. The CSV is read once at boot. If saved state exists in the DB it wins — the CSV is *not* re-read on boot when persisted state is present. To pick up CSV edits at runtime, use the **Reload CSV** button in the admin (which sends `reload_csv`, resets game state, but preserves team names and audio settings).
+`src/csv.ts` parses the question CSV (columns: `question`, `answer`, `points`). Rows with the same `question` text are grouped into one `Question`; answers are sorted highest-points first. Saved state wins over CSV contents on boot. The admin lists real `.csv` files in the project root through `list_csv_files`; `select_csv` and `reload_csv` validate filenames against this list before loading. Standard and Fast Money persist separate filenames and question banks. Selecting/reloading Standard clears its round, not team names or scores; Fast Money clears only its own progress.
 
 The CSV path resolves in `src/server.ts` as: `questions.csv` if it exists, else `questions.template.csv`. `questions.csv` is gitignored — host-specific edits stay local. `questions.template.csv` is the committed starter set; copy it to `questions.csv` to customize without dirtying the repo.
 
-The `reset_game` and `reload_csv` handlers both follow the same idiom: snapshot team names + audio block, rebuild state via `resetGame`, restore the snapshot. If you add another "preserve across reset" field, update both handlers.
+`reset_game` rebuilds state while preserving both CSV selections/question banks, team names, audio and instructions. `reload_csv` instead delegates to `setQuestions` or `loadFastMoney` and preserves Standard scores.
+
+### Fast Money
+
+`state.mode` selects `standard` or `fast_money`. `state.fastMoney` owns its questions, two sets of five responses, per-player question status, current player, question index, absolute timer deadline, and `setup → asking → scoring → reveal → finished` progression. Player 1 gets 20 seconds; Player 2 gets 25. Next marks the current question answered; Pass keeps it pending. Navigation cycles past answered questions without resetting the deadline. Answering all five or server-side expiry moves to scoring. The host advances questions while a recorder takes notes, then enters answers in scoring. Survey indices enforce equivalent-answer duplicates, normalized text catches literal duplicates, and rejected duplicates increment `buzzFlash` without saving the response.
+
+`public/{admin,display}/fast-money.js` are global scripts loaded before their respective `app.js`. Only revealed responses contribute to the audience total. Player 1's results are hidden during Player 2 setup, questions, and scoring. Mode switching preserves both games, but stops an active Fast Money timer and moves to scoring.
 
 ### Audio (display-only)
 

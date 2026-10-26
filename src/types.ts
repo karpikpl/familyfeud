@@ -46,7 +46,43 @@ export interface InstructionsState {
   total: number;
 }
 
+export type GameMode = "standard" | "fast_money";
+export type FastMoneyPhase = "setup" | "asking" | "scoring" | "reveal" | "finished";
+export type FastMoneyResult = "answer" | "pass" | "miss";
+
+export interface FastMoneyAnswer {
+  result: FastMoneyResult;
+  text: string;
+  points: number;
+  answerIndex: number | null;
+  recorded: boolean;
+  revealed: boolean;
+}
+
+export type FastMoneyAnswerInput = Pick<FastMoneyAnswer, "text" | "points" | "answerIndex"> & {
+  result?: FastMoneyResult;
+};
+
+export interface FastMoneyState {
+  questionFile: string | null;
+  questions: Question[];
+  player: 0 | 1;
+  phase: FastMoneyPhase;
+  questionIndex: number;
+  questionStatus: [
+    ("unasked" | "answered" | "passed")[],
+    ("unasked" | "answered" | "passed")[],
+  ];
+  answers: [FastMoneyAnswer[], FastMoneyAnswer[]];
+  endsAt: number | null;
+  buzzFlash: number;
+}
+
 export interface GameState {
+  mode: GameMode;
+  questionFile: string | null;
+  fastMoney: FastMoneyState;
+  gameOver: boolean;
   teams: [Team, Team];
   questions: Question[];
   currentQuestionIndex: number; // index into questions array; -1 if none
@@ -57,6 +93,7 @@ export interface GameState {
   };
   audio: AudioState;
   instructions: InstructionsState;
+  timer: { endsAt: number | null };
   // Most recent pot award. Set on award_pot, cleared on undo / endRound / question change.
   // Powers the "Undo last award" admin button.
   lastAward: LastAward | null;

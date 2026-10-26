@@ -32,6 +32,7 @@ html, body {
 }
 
 button, input, select { font: inherit; color: inherit; }
+[data-mode][hidden], .fast-admin [hidden] { display: none !important; }
 
 /* App container — keeps content readable on tablets/desktop and tidy on phones */
 .app {
@@ -70,6 +71,64 @@ button, input, select { font: inherit; color: inherit; }
   flex-wrap: wrap;
   justify-content: flex-end;
 }
+.mode-switch {
+  display: flex;
+  flex-basis: 100%;
+  gap: 8px;
+}
+.mode-switch .btn { flex: 1; font-weight: 700; }
+
+.csv-controls,
+.fm-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.csv-controls label { color: var(--gold); font-weight: 700; }
+.csv-controls__row { display: flex; gap: 8px; }
+.csv-controls select,
+.fm-response input,
+.fm-response select {
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  min-height: 44px;
+  min-width: 0;
+  width: 100%;
+}
+.csv-controls select { flex: 1; }
+.csv-controls__row .btn { flex-shrink: 0; }
+.fast-admin { display: flex; flex-direction: column; gap: var(--gap); }
+.fm-question-list { margin: 0; padding-left: 24px; }
+.fm-question-list li { padding: 5px 0; line-height: 1.4; }
+.fm-current-question {
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700;
+  line-height: 1.3;
+  padding: 16px 0;
+  overflow-wrap: anywhere;
+}
+.fm-responses { display: flex; flex-direction: column; gap: 12px; }
+.fm-response {
+  margin: 0;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  min-width: 0;
+}
+.fm-response label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
+.fm-response__question { font-weight: 600; line-height: 1.4; }
+.fm-response__status { color: var(--gold); font-size: 13px; }
+.fm-total { color: var(--gold); font-size: 20px; }
 
 .conn {
   font-size: 12px;
@@ -117,6 +176,42 @@ button, input, select { font: inherit; color: inherit; }
   margin-top: calc(var(--gap) * -0.25);
 }
 .undo-award .btn { width: 100%; }
+
+/* --- Timer --- */
+.timer-controls,
+.game-controls {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.timer-controls__head,
+.game-controls__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.timer-controls__status {
+  color: var(--gold);
+  font-size: 24px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.timer-controls__buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.game-controls__hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
 
 /* --- Teams --- */
 .teams {

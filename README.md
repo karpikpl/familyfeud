@@ -36,9 +36,32 @@ Then:
 
 For phone access on the same Wi-Fi, use `http://<your-mac-ip>:4000`. On macOS, `ipconfig getifaddr en0` gives you the IP. If you need to reach the admin from outside your LAN, point any tunnel of your choice at port 4000.
 
+## Docker
+
+```bash
+docker build -t familyfeud .
+docker run -d --name familyfeud \
+  -p 3000:3000 -p 4000:4000 \
+  -v familyfeud-data:/app/data \
+  familyfeud
+```
+
+Open the same audience and admin URLs above. Stop with `docker stop familyfeud`; restart with `docker start familyfeud`. The named volume keeps game state when the container is removed and recreated. This starts a separate game; it does not import your local `familyfeud.db`.
+
+The image runs as a non-root user and includes only the Standard and Fast Money template CSVs, not local questions, databases, or audio. To use your own files, add read-only bind mounts before the final `familyfeud` image name:
+
+```bash
+--mount type=bind,src="$(pwd)/questions.csv",dst=/app/questions.csv,readonly
+--mount type=bind,src="$(pwd)/audio/sfx",dst=/app/audio/sfx,readonly
+```
+
+Mount additional CSVs as individual files under `/app/` to make them available in the admin dropdown. Create the source files/directories first and make them readable by the container user. Saved state takes precedence over CSV contents; select or reload the CSV in admin to apply changes.
+
+Both ports must be free on the host; if you're already running the app locally, use `-p 3001:3000 -p 4001:4000` and open ports 3001/4001 instead. Keep admin access on a trusted network; it has no authentication.
+
 ## Questions CSV
 
-Drop a `questions.csv` in the project root. Format:
+Put question CSV files in the project root, then choose one from the admin's **Question CSV** dropdown. Standard and Fast Money remember separate selections. Format:
 
 ```csv
 question,answer,points
@@ -49,7 +72,10 @@ Name something you find in a kitchen,Stove,22
 
 - Rows with the same `question` value are grouped into one round.
 - Answers are sorted by points (highest on top), Family Feud style.
-- Hit **Reload CSV** in the admin to pick up changes (resets game; team names kept).
+- Use **Refresh list** after adding files. **Reload CSV** re-reads the current mode's selected file.
+- Selecting or reloading a Standard CSV clears the current round and unawarded pot, but keeps team names and scores.
+- Selecting or reloading a Fast Money CSV resets Fast Money only. It needs at least five questions; the first five are used.
+- `questions.fast-money.template.csv` is a playable starter with illustrative points, not real survey results.
 
 ## Game flow
 
@@ -61,6 +87,22 @@ Name something you find in a kitchen,Stove,22
 6. Wrong answer during the face-off (where the first wrong answer doesn't count as a strike on the show)? Hit **🔊 Buzz** instead. Same sound, no strike counted.
 7. **Award pot →** sends the round's pot to whichever team won.
 8. **Next ▶** advances to the next question.
+9. Award the final pot, then **End Game & Show Winner**. **Resume Game** allows corrections.
+
+## Fast Money
+
+Use the **Standard / Fast Money** switch in the admin header. Both modes keep independent progress and CSV selections; Fast Money never changes Standard team scores.
+
+1. Select a Fast Money CSV. Keep Player 2 out of earshot during Player 1's questions and reveals.
+2. **Start Player 1** begins 20 seconds. Read each question from the admin and use **Next** after an answer or **Pass** to leave it pending and advance. After the first five, only passed questions repeat, as often as needed while time remains. A separate recorder writes down the answers; the audience sees the timer, not the questions or answers.
+3. When all five questions are answered or time runs out, the admin moves to answer entry automatically. You can also finish early with **Enter answers**. Match the notes to survey answers, or enter custom text and points, then click **Save Answers** once to save all five together. Unanswered passes default to 0 points, while a pass answered on a later lap needs its actual answer entered.
+4. Choose **Ready to reveal on TV**, then **Reveal next answer** for each answer.
+5. **Prepare Player 2** hides the first player's answers and prepares the same questions with 25 seconds. Use **Duplicate answer buzzer** during questioning; duplicate survey matches or repeated answer text are also rejected when scoring.
+6. Enter and reveal Player 2's answers. A combined 200 points wins; otherwise the display shows the final total. **Edit this player's answers** allows corrections.
+
+When scoring, **Pass** and **Miss** are separate choices worth 0 points. Pass reveals as **PASS**; Miss reveals only a centered red **X**, without answer text. The entered wrong answer is kept in admin.
+
+Switching modes during questioning stops the Fast Money timer and moves to answer entry. **Reset Fast Money** clears its answers and timing without changing Standard scores.
 
 ## Sound
 
@@ -84,7 +126,7 @@ Both are part of game state and persist across restart.
 State is saved to `familyfeud.db` (SQLite, WAL mode) after every command. If the server crashes mid-game, restart it with `npm start` and you'll come back exactly where you were: same question, same revealed answers, same pot, strikes, scores, team names.
 
 - `DB_PATH=/some/path npm start` to put the DB elsewhere.
-- **Reload CSV** (admin) re-reads `questions.csv` and resets game state but keeps team names. The new state is then persisted.
+- **Reload CSV** re-reads the selected file for the active mode, keeping Standard team names and scores.
 - **Reset Game** (admin) clears scores/reveals but keeps team names. Also persisted.
 - To wipe everything and start clean: stop the server, `rm familyfeud.db*`, restart.
 
@@ -92,6 +134,7 @@ State is saved to `familyfeud.db` (SQLite, WAL mode) after every command. If the
 
 ```bash
 npm run dev   # tsc --watch + nodemon
+npm test      # build + Node's built-in tests for state, Fast Money, and CSV validation
 ```
 
 ## How this compares to other open-source Family Feud projects
@@ -118,7 +161,6 @@ There are a handful of Family Feud implementations on GitHub. Quick lay of the l
 ### What this project doesn't do
 
 - **No multi-room or remote play.** Friendly-Feud's join-code system lets strangers play over the internet. This is LAN-only on purpose.
-- **No Fast Money round.** Friendly-Feud has one, with timers.
 - **No physical hardware-buzzer integration.** ChicagoBlend and ebron-tech both support this.
 - **No i18n.** Friendly-Feud ships four languages.
 

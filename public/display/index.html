@@ -21,9 +21,6 @@
         <div class="board-frame">
           <div class="pot" id="pot">0</div>
           <div class="board" id="board"></div>
-          <div class="strikes" id="strikes" hidden>
-            <span class="x">X</span><span class="x">X</span><span class="x">X</span>
-          </div>
         </div>
 
         <div class="score-pill score-pill--right" id="score-right">
@@ -33,6 +30,51 @@
       </div>
 
       <div class="brand">FAMILY FEUD</div>
+    </div>
+
+    <div class="strikes" id="strikes" hidden>
+      <span class="x">X</span><span class="x">X</span><span class="x">X</span>
+    </div>
+
+    <section class="fast-money" id="fast-money" hidden>
+      <header class="fast-money__header">
+        <div class="fast-money__eyebrow">THE FINAL CHALLENGE</div>
+        <div class="fast-money__title">FAST MONEY</div>
+        <div class="fast-money__subtitle" id="fm-display-subtitle">PLAYER 1</div>
+      </header>
+      <div class="fast-money__holding" id="fm-display-holding">
+        <div id="fm-display-message">GET READY</div>
+        <div class="fast-money__hint" id="fm-display-hint">Five questions. One goal.</div>
+      </div>
+      <div class="fast-money__results" id="fm-display-results" hidden>
+        <div class="fast-money__columns"><span></span><span>PLAYER 1</span><span>PLAYER 2</span></div>
+        <div class="fast-money__board" id="fm-display-board"></div>
+        <div class="fast-money__total"><span id="fm-display-outcome">TOTAL</span> <strong id="fm-display-total">0</strong><span> / 200</span></div>
+      </div>
+    </section>
+
+    <section id="game-result" class="game-result" role="status" hidden>
+      <div class="game-result__card">
+        <div class="game-result__eyebrow">FAMILY FEUD · FINAL RESULTS</div>
+        <div id="result-title" class="game-result__title">WINNER</div>
+        <div id="result-winner" class="game-result__winner"></div>
+        <div class="game-result__scores">
+          <div class="game-result__team" id="result-team-0">
+            <div class="game-result__name" id="result-name-0"></div>
+            <div class="game-result__score" id="result-score-0">0</div>
+          </div>
+          <div class="game-result__team" id="result-team-1">
+            <div class="game-result__name" id="result-name-1"></div>
+            <div class="game-result__score" id="result-score-1">0</div>
+          </div>
+        </div>
+        <div class="game-result__footer">THANKS FOR PLAYING!</div>
+      </div>
+    </section>
+
+    <div id="timer" class="timer" role="timer" aria-label="Countdown" hidden>
+      <div class="timer__label">TIME</div>
+      <div id="timer-value" class="timer__value">0:30</div>
     </div>
 
     <div id="instructions" class="instructions" hidden>
@@ -90,6 +132,7 @@
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
+    <script src="fast-money.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
