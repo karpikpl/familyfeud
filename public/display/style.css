@@ -587,6 +587,39 @@ html, body {
   color: var(--frame-gold);
 }
 
+/* --- Local display controls --- */
+.fullscreen-button {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 110;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--frame-gold);
+  border-radius: 50%;
+  background: var(--bg-1);
+  color: var(--frame-gold);
+  font: 28px/1 system-ui, sans-serif;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.fullscreen-button:hover,
+.fullscreen-button:focus-visible { opacity: 1; }
+.fullscreen-button:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+.fullscreen-error {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: calc(max(16px, env(safe-area-inset-bottom)) + 60px);
+  z-index: 110;
+  max-width: min(360px, calc(100vw - 32px));
+  padding: 12px;
+  border: 1px solid var(--frame-gold);
+  border-radius: 10px;
+  background: var(--bg-1);
+  color: white;
+  font: 14px/1.4 system-ui, sans-serif;
+}
+
 /* --- Audio gate (browser autoplay restriction) --- */
 .audio-gate {
   position: fixed;

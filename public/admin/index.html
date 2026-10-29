@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Family Feud — Admin</title>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -25,6 +25,7 @@
     </header>
 
     <main class="app">
+    <div class="admin-setup">
     <section class="vol">
       <label class="vol__label" for="vol">🎵 Theme volume <span id="vol-num">70</span></label>
       <input type="range" id="vol" class="vol__slider" min="0" max="100" step="1" />
@@ -43,7 +44,10 @@
       </div>
       <p class="game-controls__hint" id="question-file-hint">Changing the CSV clears the round but keeps team scores.</p>
     </section>
+    </div>
 
+    <div class="admin-workspace">
+    <div class="admin-game">
     <section class="fast-admin" id="fast-money-admin" data-mode="fast_money" hidden>
       <div class="fm-card">
         <div class="game-controls__head">
@@ -127,24 +131,6 @@
       <button class="btn btn-warn big" id="undo-award">↩ Undo last award</button>
     </section>
 
-    <section class="instructions-admin" data-mode="standard">
-      <div class="instructions-admin__head">
-        <strong>📖 Instructions</strong>
-        <button class="btn btn-primary" id="ins-toggle">Show on TV</button>
-      </div>
-      <div class="instructions-admin__nav">
-        <button class="btn" id="ins-prev">◀ Prev</button>
-        <span class="instructions-admin__page" id="ins-page">1 / 4</span>
-        <button class="btn" id="ins-next">Next ▶</button>
-      </div>
-      <div class="instructions-admin__chips" id="ins-chips">
-        <button class="btn ins-chip" data-ins-page="0">1. The Game</button>
-        <button class="btn ins-chip" data-ins-page="1">2. Face-Off</button>
-        <button class="btn ins-chip" data-ins-page="2">3. Strikes</button>
-        <button class="btn ins-chip" data-ins-page="3">4. Winning</button>
-      </div>
-    </section>
-
     <section class="round" data-mode="standard">
       <div class="round__head">
         <div class="round__nav">
@@ -182,6 +168,26 @@
     <section class="answers" id="answers" data-mode="standard">
       <div class="answers__empty">Pick a question and start the round.</div>
     </section>
+    </div>
+
+    <aside class="admin-tools" aria-label="Display and game tools">
+    <section class="instructions-admin" data-mode="standard">
+      <div class="instructions-admin__head">
+        <strong>📖 Instructions</strong>
+        <button class="btn btn-primary" id="ins-toggle">Show on TV</button>
+      </div>
+      <div class="instructions-admin__nav">
+        <button class="btn" id="ins-prev">◀ Prev</button>
+        <span class="instructions-admin__page" id="ins-page">1 / 4</span>
+        <button class="btn" id="ins-next">Next ▶</button>
+      </div>
+      <div class="instructions-admin__chips" id="ins-chips">
+        <button class="btn ins-chip" data-ins-page="0">1. The Game</button>
+        <button class="btn ins-chip" data-ins-page="1">2. Face-Off</button>
+        <button class="btn ins-chip" data-ins-page="2">3. Strikes</button>
+        <button class="btn ins-chip" data-ins-page="3">4. Winning</button>
+      </div>
+    </section>
 
     <section class="timer-controls" aria-label="30-second timer" data-mode="standard">
       <div class="timer-controls__head">
@@ -203,6 +209,8 @@
       <button class="btn btn-warn big" id="end-game">End Game &amp; Show Winner</button>
       <button class="btn btn-primary big" id="resume-game" hidden>Resume Game</button>
     </section>
+    </aside>
+    </div>
 
     <footer class="footer">
       <span id="csv-info">…</span>

@@ -62,6 +62,7 @@ function send(cmd) { socket.emit("cmd", cmd); }
 function render(state) {
   lastState = state;
   const fast = state.mode === "fast_money";
+  document.body.classList.toggle("fast-money-mode", fast);
   document.querySelectorAll("[data-mode]").forEach((el) => {
     el.hidden = el.dataset.mode !== (state.mode ?? "standard");
   });

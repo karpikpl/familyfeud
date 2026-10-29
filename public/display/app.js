@@ -21,6 +21,8 @@ const els = {
   numLeft: document.getElementById("num-left"),
   numRight: document.getElementById("num-right"),
   gate: document.getElementById("audio-gate"),
+  fullscreen: document.getElementById("fullscreen"),
+  fullscreenError: document.getElementById("fullscreen-error"),
   instructions: document.getElementById("instructions"),
   instructionsPages: document.querySelectorAll(".instructions__page"),
   instructionsPageNum: document.getElementById("instructions-page-num"),
@@ -380,6 +382,38 @@ function escapeHtml(s) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 }
+
+// ----- Local display controls -----
+function updateFullscreenButton() {
+  const active = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+  const label = active ? "Exit fullscreen" : "Enter fullscreen";
+  els.fullscreen.setAttribute("aria-label", label);
+  els.fullscreen.setAttribute("aria-pressed", String(active));
+  els.fullscreen.title = label;
+}
+
+els.fullscreen.onclick = async () => {
+  els.fullscreenError.hidden = true;
+  try {
+    if (document.fullscreenElement || document.webkitFullscreenElement) {
+      const exit = document.exitFullscreen || document.webkitExitFullscreen;
+      if (!exit) throw new Error("This browser does not support exiting fullscreen.");
+      await exit.call(document);
+    } else {
+      const root = document.documentElement;
+      const enter = root.requestFullscreen || root.webkitRequestFullscreen;
+      if (!enter) throw new Error("This browser does not support fullscreen.");
+      await enter.call(root);
+    }
+    updateFullscreenButton();
+  } catch (err) {
+    els.fullscreenError.textContent = `Fullscreen unavailable: ${err.message}`;
+    els.fullscreenError.hidden = false;
+  }
+};
+document.addEventListener("fullscreenchange", updateFullscreenButton);
+document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
+updateFullscreenButton();
 
 // ----- Audio gate (browser autoplay restriction) -----
 function dismissGate() {

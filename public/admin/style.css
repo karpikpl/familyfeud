@@ -1,4 +1,5 @@
 :root {
+  color-scheme: dark;
   --bg: #0e1320;
   --card: #1a2237;
   --card-2: #232d48;
@@ -33,6 +34,7 @@ html, body {
 
 button, input, select { font: inherit; color: inherit; }
 [data-mode][hidden], .fast-admin [hidden] { display: none !important; }
+.fast-money-mode .admin-tools { display: none; }
 
 /* App container — keeps content readable on tablets/desktop and tidy on phones */
 .app {
@@ -43,6 +45,19 @@ button, input, select { font: inherit; color: inherit; }
   flex-direction: column;
   gap: var(--gap);
 }
+.admin-setup,
+.admin-workspace,
+.admin-game,
+.admin-tools {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  min-width: 0;
+}
+.app > *,
+.admin-setup > *,
+.admin-game > *,
+.admin-tools > * { min-width: 0; }
 
 /* --- Topbar --- */
 .topbar {
@@ -101,6 +116,7 @@ button, input, select { font: inherit; color: inherit; }
   min-height: 44px;
   min-width: 0;
   width: 100%;
+  font-size: 16px;
 }
 .csv-controls select { flex: 1; }
 .csv-controls__row .btn { flex-shrink: 0; }
@@ -153,6 +169,7 @@ button, input, select { font: inherit; color: inherit; }
   -webkit-tap-highlight-color: transparent;
   transition: transform 80ms ease, background 120ms ease, border-color 120ms ease;
   min-height: 44px;
+  min-width: 44px;
   font-size: 14px;
 }
 .btn:active { transform: translateY(1px); }
@@ -273,18 +290,13 @@ button, input, select { font: inherit; color: inherit; }
 }
 .team__btns .btn { padding: 10px 4px; font-size: 14px; }
 
-/* Award button gets an explicit primary look + ellipsis safety */
+/* Keep long team names readable on award buttons. */
 .team .btn.big {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
 }
 
-/* --- Theme volume (sticky under topbar so it's always thumb-reachable on phones) --- */
+/* --- Theme volume --- */
 .vol {
-  position: sticky;
-  top: calc(env(safe-area-inset-top) + 56px);
-  z-index: 4;
   background: var(--card);
   padding: 10px 12px;
   border-radius: 14px;
@@ -310,7 +322,7 @@ button, input, select { font: inherit; color: inherit; }
   min-width: 140px;
   -webkit-appearance: none;
   appearance: none;
-  height: 28px;
+  height: 44px;
   background: transparent;
 }
 .vol__slider::-webkit-slider-runnable-track {
@@ -346,7 +358,7 @@ button, input, select { font: inherit; color: inherit; }
 .vol-preset {
   font-size: 13px;
   padding: 8px 12px;
-  min-height: 38px;
+  min-height: 44px;
   font-weight: 600;
 }
 
@@ -385,7 +397,7 @@ button, input, select { font: inherit; color: inherit; }
 @media (min-width: 540px) {
   .instructions-admin__chips { grid-template-columns: repeat(4, 1fr); }
 }
-.ins-chip { font-size: 13px; padding: 8px 6px; min-height: 38px; }
+.ins-chip { font-size: 13px; padding: 8px 6px; min-height: 44px; }
 
 /* --- Round --- */
 .round {
@@ -406,7 +418,7 @@ button, input, select { font: inherit; color: inherit; }
   gap: 8px;
 }
 
-.round__nav { display: flex; gap: 6px; align-items: center; flex: 1; min-width: 0; }
+.round__nav { display: flex; gap: 6px; align-items: center; flex: 1 1 260px; min-width: 0; }
 .round__nav select {
   background: var(--card-2);
   border: 1px solid var(--line);
@@ -414,6 +426,8 @@ button, input, select { font: inherit; color: inherit; }
   padding: 8px 10px;
   flex: 1;
   min-width: 0;
+  min-height: 44px;
+  font-size: 16px;
 }
 
 .round__meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
@@ -462,7 +476,13 @@ button, input, select { font: inherit; color: inherit; }
   font-size: 14px;
   color: var(--muted);
 }
-.round__control .btn { padding: 8px 12px; min-height: 38px; font-size: 13px; }
+.round__control .btn {
+  padding: 8px 12px;
+  min-height: 44px;
+  max-width: 100%;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
 
 .strikes-pill {
   margin-left: auto;
@@ -530,7 +550,7 @@ button, input, select { font: inherit; color: inherit; }
 }
 .answer__btn {
   grid-area: btn;
-  min-height: 40px;
+  min-height: 44px;
   width: 100%;
   font-size: 14px;
 }
@@ -551,4 +571,50 @@ button, input, select { font: inherit; color: inherit; }
   font-size: 12px;
   padding: 4px 0 8px;
   word-break: break-all;
+}
+
+@media (max-width: 479px) {
+  .team__btns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 768px) {
+  .app {
+    max-width: 1320px;
+    --gap: 16px;
+  }
+  .admin-setup {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+  .admin-tools {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+  .instructions-admin { grid-column: 1 / -1; }
+  .round__btns { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .round__question { font-size: 21px; }
+  .fm-responses {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+@media (min-width: 1024px) and (orientation: landscape) {
+  .admin-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    align-items: start;
+  }
+  .admin-tools {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .admin-tools .instructions-admin__chips {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .fast-money-mode .admin-workspace { grid-template-columns: minmax(0, 1fr); }
 }
