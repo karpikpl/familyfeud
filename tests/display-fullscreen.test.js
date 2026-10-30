@@ -3,11 +3,22 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
+const stateFns = require("../dist/state");
+
+function classList() {
+  const names = new Set();
+  return {
+    toggle(name, active) { active ? names.add(name) : names.delete(name); },
+    remove(name) { names.delete(name); },
+    contains(name) { return names.has(name); },
+  };
+}
 
 function display() {
   const elements = new Map();
   const listeners = new Map();
   const xs = Array.from({ length: 3 }, () => ({ hidden: false, style: {} }));
+  const strikeCountXs = Array.from({ length: 3 }, () => ({ classList: classList() }));
   const timeouts = new Map();
   let nextTimeout = 0;
   const document = {
@@ -16,6 +27,7 @@ function display() {
       if (!elements.has(id)) elements.set(id, {
         hidden: true,
         style: {},
+        classList: classList(),
         attributes: {},
         setAttribute(name, value) { this.attributes[name] = value; },
         addEventListener() {},
@@ -23,13 +35,14 @@ function display() {
       });
       return elements.get(id);
     },
-    querySelector: () => ({}),
-    querySelectorAll: () => [],
+    querySelector: () => ({ classList: classList() }),
+    querySelectorAll: (selector) => selector === "#strike-count .strike-count__x" ? strikeCountXs : [],
     addEventListener: (name, handler) => listeners.set(name, handler),
   };
   const context = vm.createContext({
     document,
     window: { addEventListener() {} },
+    renderFastMoneyDisplay() {},
     io: () => ({
       on() {},
       emit() { assert.fail("Display controls must not send game commands"); },
@@ -52,8 +65,51 @@ function display() {
     strikes: elements.get("strikes"),
     flashStrikes: vm.runInContext("flashStrikes", context),
     flashBuzz: vm.runInContext("flashBuzz", context),
+    render: vm.runInContext("render", context),
+    strikeCount: elements.get("strike-count"),
+    strikeCountXs,
   };
 }
+
+test("audience strike counter persists after flashes and follows round resets and mode changes", () => {
+  const { render, strikeCount, strikeCountXs, timeouts } = display();
+  const state = stateFns.makeInitialState([{ id: 1, text: "Question", answers: [] }]);
+  const renderState = () => render(structuredClone(state));
+  const active = () => strikeCountXs.filter((x) => x.classList.contains("is-active")).length;
+  renderState();
+  assert.equal(strikeCount.hidden, true);
+  stateFns.startRound(state);
+  renderState();
+  assert.equal(strikeCount.hidden, false);
+  assert.equal(active(), 0);
+  for (let count = 1; count <= 3; count++) {
+    stateFns.addStrike(state);
+    renderState();
+    timeouts.values().next().value();
+    assert.equal(strikeCount.hidden, false);
+    assert.equal(active(), count);
+    assert.equal(strikeCount.attributes["aria-label"], `${count} of 3 strikes`);
+  }
+  stateFns.clearStrikes(state);
+  stateFns.addBuzz(state);
+  renderState();
+  assert.equal(active(), 0);
+  stateFns.addStrike(state);
+  renderState();
+  stateFns.setMode(state, "fast_money");
+  renderState();
+  assert.equal(strikeCount.hidden, true);
+  stateFns.setMode(state, "standard");
+  renderState();
+  assert.equal(strikeCount.hidden, false);
+  assert.equal(active(), 1);
+  stateFns.startRound(state);
+  renderState();
+  assert.equal(active(), 0);
+  stateFns.endGame(state);
+  renderState();
+  assert.equal(strikeCount.hidden, true);
+});
 
 test("audience fullscreen toggles locally and tracks browser-driven exits", async () => {
   const { document, button, listeners } = display();

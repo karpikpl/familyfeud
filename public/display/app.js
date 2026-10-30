@@ -16,6 +16,8 @@ const els = {
   resultScores: [0, 1].map((i) => document.getElementById(`result-score-${i}`)),
   pot: document.getElementById("pot"),
   strikes: document.getElementById("strikes"),
+  strikeCount: document.getElementById("strike-count"),
+  strikeCountXs: document.querySelectorAll("#strike-count .strike-count__x"),
   nameLeft: document.getElementById("name-left"),
   nameRight: document.getElementById("name-right"),
   numLeft: document.getElementById("num-left"),
@@ -233,6 +235,11 @@ function render(state) {
   const fast = state.mode === "fast_money";
   els.stage.hidden = fast;
   const playing = !fast && state.round.kind === "playing";
+
+  const strikes = playing ? state.round.strikes : 0;
+  els.strikeCount.hidden = !playing || state.gameOver;
+  els.strikeCount.setAttribute("aria-label", `${strikes} of 3 strikes`);
+  els.strikeCountXs.forEach((x, i) => x.classList.toggle("is-active", i < strikes));
 
   els.stage.classList.toggle("idle", !playing);
 

@@ -245,6 +245,43 @@ html, body {
   100% { transform: rotateX(0deg); opacity: 1; }
 }
 
+/* --- Persistent round strikes --- */
+.strike-count[hidden] { display: none !important; }
+.strike-count {
+  position: fixed;
+  left: max(3vw, env(safe-area-inset-left));
+  bottom: max(7vh, env(safe-area-inset-bottom));
+  z-index: 20;
+  padding: 1vh 1.2vw;
+  border: 0.25vh solid var(--frame-gold-deep);
+  border-radius: 1vh;
+  background: var(--bg-1);
+  text-align: center;
+  pointer-events: none;
+}
+.strike-count__label {
+  color: var(--frame-gold);
+  font-size: clamp(12px, 1.8vh, 22px);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5vh;
+}
+.strike-count__slots { display: flex; gap: 0.6vw; }
+.strike-count__x {
+  display: grid;
+  place-items: center;
+  width: 1.15em;
+  height: 1.15em;
+  border: 1px solid #343b55;
+  border-radius: 0.15em;
+  color: #454d67;
+  font: clamp(28px, 6vh, 80px)/1 "Impact", "Arial Black", sans-serif;
+}
+.strike-count__x.is-active {
+  color: var(--x-red);
+  border-color: #b12222;
+  background: #351323;
+  text-shadow: 0 0 0.2em #ff2222;
+}
 /* --- Strikes overlay --- */
 .strikes[hidden] { display: none !important; }
 .strikes {
