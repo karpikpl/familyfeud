@@ -7,14 +7,19 @@ const vm = require("node:vm");
 function display() {
   const elements = new Map();
   const listeners = new Map();
+  const xs = Array.from({ length: 3 }, () => ({ hidden: false, style: {} }));
+  const timeouts = new Map();
+  let nextTimeout = 0;
   const document = {
     documentElement: {},
     getElementById(id) {
       if (!elements.has(id)) elements.set(id, {
         hidden: true,
+        style: {},
         attributes: {},
         setAttribute(name, value) { this.attributes[name] = value; },
         addEventListener() {},
+        querySelectorAll: () => id === "strikes" ? xs : [],
       });
       return elements.get(id);
     },
@@ -22,7 +27,7 @@ function display() {
     querySelectorAll: () => [],
     addEventListener: (name, handler) => listeners.set(name, handler),
   };
-  vm.runInNewContext(fs.readFileSync(path.join(__dirname, "../public/display/app.js"), "utf8"), {
+  const context = vm.createContext({
     document,
     window: { addEventListener() {} },
     io: () => ({
@@ -30,12 +35,23 @@ function display() {
       emit() { assert.fail("Display controls must not send game commands"); },
     }),
     setInterval() {},
+    setTimeout(handler) {
+      timeouts.set(++nextTimeout, handler);
+      return nextTimeout;
+    },
+    clearTimeout(id) { timeouts.delete(id); },
   });
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "../public/display/app.js"), "utf8"), context);
   return {
     document,
     button: elements.get("fullscreen"),
     error: elements.get("fullscreen-error"),
     listeners,
+    xs,
+    timeouts,
+    strikes: elements.get("strikes"),
+    flashStrikes: vm.runInContext("flashStrikes", context),
+    flashBuzz: vm.runInContext("flashBuzz", context),
   };
 }
 
@@ -59,6 +75,29 @@ test("audience fullscreen toggles locally and tracks browser-driven exits", asyn
   document.fullscreenElement = null;
   listeners.get("fullscreenchange")();
   assert.equal(button.attributes["aria-pressed"], "false");
+});
+
+test("strike flashes center only the active Xs and replace earlier hide timers", () => {
+  const { flashStrikes, strikes, xs, timeouts } = display();
+  flashStrikes(1);
+  assert.equal(strikes.hidden, false);
+  assert.deepEqual(xs.map((x) => !x.hidden), [true, false, false]);
+  const firstTimeout = timeouts.keys().next().value;
+  flashStrikes(2);
+  assert.equal(timeouts.has(firstTimeout), false);
+  assert.equal(timeouts.size, 1);
+  assert.deepEqual(xs.map((x) => !x.hidden), [true, true, false]);
+  timeouts.values().next().value();
+  assert.equal(strikes.hidden, true);
+});
+
+test("a face-off buzz replaces a pending strike flash with a single X", () => {
+  const { flashStrikes, flashBuzz, strikes, xs, timeouts } = display();
+  flashStrikes(3);
+  flashBuzz();
+  assert.equal(strikes.hidden, false);
+  assert.deepEqual(xs.map((x) => !x.hidden), [true, false, false]);
+  assert.equal(timeouts.size, 1);
 });
 
 test("audience fullscreen supports Safari's prefixed API and change event", async () => {

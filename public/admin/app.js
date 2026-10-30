@@ -214,7 +214,7 @@ function updateTimer() {
   const endsAt = lastState?.timer?.endsAt ?? null;
   const seconds = endsAt === null ? 0 : Math.max(0, Math.ceil((endsAt - Date.now()) / 1000));
   els.timerStatus.textContent = endsAt === null ? "Hidden" : `0:${String(seconds).padStart(2, "0")}`;
-  els.startTimer.textContent = endsAt === null ? "Start 30s" : "Restart 30s";
+  els.startTimer.textContent = endsAt === null ? "Start 10s" : "Restart 10s";
   els.hideTimer.disabled = endsAt === null;
 }
 setInterval(updateTimer, 100);

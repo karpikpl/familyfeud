@@ -18,6 +18,7 @@ import {
   clearStrikes,
   endGame,
   endRound,
+  expireTimer,
   gotoQuestion,
   hideTimer,
   makeInitialState,
@@ -354,7 +355,9 @@ function selectQuestionFile(filename: string) {
 }
 
 setInterval(() => {
-  if (expireFastMoney(state)) {
+  const timerExpired = expireTimer(state);
+  const fastMoneyExpired = expireFastMoney(state);
+  if (timerExpired || fastMoneyExpired) {
     persist();
     broadcast();
   }

@@ -48,7 +48,31 @@ test("legacy state migration preserves scores, round, and timer", () => {
   assert.equal(state.fastMoney.phase, "setup");
   assert.equal(state.teams[0].score, 123);
   assert.deepEqual(state.round, originalRound);
-  assert.equal(state.timer.endsAt, 31000);
+  assert.equal(state.timer.endsAt, 11000);
+});
+
+test("standard timer counts down ten seconds and hides three seconds after expiry", () => {
+  const state = stateFns.makeInitialState(questions);
+  stateFns.startTimer(state, 1000);
+  assert.equal(state.timer.endsAt, 11000);
+  assert.equal(stateFns.expireTimer(state, 10999), false);
+  assert.equal(stateFns.expireTimer(state, 11000), false);
+  assert.equal(stateFns.expireTimer(state, 13999), false);
+  assert.equal(state.timer.endsAt, 11000);
+  assert.equal(stateFns.expireTimer(state, 14000), true);
+  assert.equal(state.timer.endsAt, null);
+  assert.equal(stateFns.expireTimer(state, 14001), false);
+});
+
+test("restarting or manually hiding the standard timer cancels its old expiry", () => {
+  const state = stateFns.makeInitialState(questions);
+  stateFns.startTimer(state, 1000);
+  stateFns.startTimer(state, 12000);
+  assert.equal(stateFns.expireTimer(state, 14000), false);
+  assert.equal(state.timer.endsAt, 22000);
+  stateFns.hideTimer(state);
+  assert.equal(stateFns.expireTimer(state, 25000), false);
+  assert.equal(state.timer.endsAt, null);
 });
 
 test("CSV replacement preserves standard scores and clears only its round", () => {

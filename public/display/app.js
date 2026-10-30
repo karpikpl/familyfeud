@@ -30,6 +30,7 @@ const els = {
 
 let lastStrikeFlash = 0;
 let lastBuzzFlash = 0;
+let strikeHideTimeout = null;
 let lastRevealed = new Map(); // questionId -> Set of revealed indices
 let audioReady = false;
 let audioCtx = null;
@@ -259,16 +260,16 @@ function render(state) {
     els.board.appendChild(slot);
   }
 
-  if (playing && state.round.strikeFlash > lastStrikeFlash) {
-    lastStrikeFlash = state.round.strikeFlash;
+  const strikeFlash = state.round.kind === "playing" ? state.round.strikeFlash : 0;
+  if (playing && strikeFlash > lastStrikeFlash) {
     flashStrikes(state.round.strikes);
   }
-  const buzzFlash = playing ? (state.round.buzzFlash ?? 0) : 0;
+  lastStrikeFlash = strikeFlash;
+  const buzzFlash = state.round.kind === "playing" ? (state.round.buzzFlash ?? 0) : 0;
   if (playing && buzzFlash > lastBuzzFlash) {
-    lastBuzzFlash = buzzFlash;
     flashBuzz();
   }
-  if (!playing && !fast) { lastStrikeFlash = 0; lastBuzzFlash = 0; }
+  lastBuzzFlash = buzzFlash;
 
   applyAudioState(state);
   applyInstructions(state);
@@ -349,30 +350,25 @@ function fireSoundDiffs(state) {
   }
 }
 
-function flashStrikes(count) {
+function flashStrikes(count, duration = 1600) {
+  clearTimeout(strikeHideTimeout);
   const xs = els.strikes.querySelectorAll(".x");
   xs.forEach((x, i) => {
-    x.style.visibility = i < count ? "visible" : "hidden";
+    x.hidden = i >= count;
+    x.style.animation = "none";
   });
   els.strikes.hidden = false;
   els.strikes.style.animation = "none";
   void els.strikes.offsetWidth;
   els.strikes.style.animation = "";
-  setTimeout(() => { els.strikes.hidden = true; }, 1600);
+  xs.forEach((x) => { x.style.animation = ""; });
+  strikeHideTimeout = setTimeout(() => { els.strikes.hidden = true; }, duration);
 }
 
 // Wrong-answer buzz (face-off) — single X, shorter flash, same buzzer sound.
 function flashBuzz() {
-  const xs = els.strikes.querySelectorAll(".x");
-  xs.forEach((x, i) => {
-    x.style.visibility = i === 0 ? "visible" : "hidden";
-  });
-  els.strikes.hidden = false;
-  els.strikes.style.animation = "none";
-  void els.strikes.offsetWidth;
-  els.strikes.style.animation = "";
+  flashStrikes(1, 900);
   playStrike();
-  setTimeout(() => { els.strikes.hidden = true; }, 900);
 }
 
 function escapeHtml(s) {

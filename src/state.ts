@@ -73,11 +73,17 @@ export function migrateState(state: GameState, defaultQuestionFile: string | nul
 }
 
 export function startTimer(state: GameState, now = Date.now()): void {
-  state.timer.endsAt = now + 30_000;
+  state.timer.endsAt = now + 10_000;
 }
 
 export function hideTimer(state: GameState): void {
   state.timer.endsAt = null;
+}
+
+export function expireTimer(state: GameState, now = Date.now()): boolean {
+  if (state.timer.endsAt === null || now < state.timer.endsAt + 3_000) return false;
+  hideTimer(state);
+  return true;
 }
 
 export function setMode(state: GameState, mode: GameMode): void {

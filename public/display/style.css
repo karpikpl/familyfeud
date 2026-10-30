@@ -255,14 +255,14 @@ html, body {
   justify-content: center;
   gap: 4vw;
   background: rgba(0, 0, 0, 0.55);
-  z-index: 50;
+  z-index: 80;
   animation: strike-flash 1500ms ease forwards;
   pointer-events: none;
 }
 
 .strikes .x {
   font-family: "Impact", "Arial Black", sans-serif;
-  font-size: 38vh;
+  font-size: min(38vh, 28vw);
   color: var(--x-red);
   text-shadow:
     0 0 4vh #ff5050,
