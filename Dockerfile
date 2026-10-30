@@ -26,7 +26,7 @@ COPY --from=build /app/package.json /app/package-lock.json ./
 COPY --from=build /app/node_modules/ ./node_modules/
 COPY --from=build /app/dist/ ./dist/
 COPY public/ ./public/
-COPY questions.template.csv questions.fast-money.template.csv ./
+COPY questions/ ./questions/
 
 RUN mkdir -p /app/data /app/audio/sfx && chown node:node /app/data
 

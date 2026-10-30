@@ -1,0 +1,2476 @@
+{
+  "source_workbook": "Family-Feud-Themed-Sets-reviewed.xlsx",
+  "source_sha256": "3671de776aff027f9e25e8fe71af13919722dfaba1f74874fe7b8bd11116597b",
+  "score_kind": "Original workbook points: estimated / unverified or AI-generated; not a human survey.",
+  "grouping": "Three Halloween and four funny/general games. Each has five Standard and five Fast Money questions. All included questions used once; all excluded questions omitted.",
+  "promoted_to_standard": [
+    "Q068",
+    "Q069",
+    "Q070",
+    "Q071",
+    "Q072"
+  ],
+  "excluded_question_ids": [
+    "Q004",
+    "Q005",
+    "Q006",
+    "Q007",
+    "Q008",
+    "Q015",
+    "Q016",
+    "Q021",
+    "Q022",
+    "Q024",
+    "Q081",
+    "Q082",
+    "Q083",
+    "Q084",
+    "Q085",
+    "Q086",
+    "Q087",
+    "Q088",
+    "Q089",
+    "Q090",
+    "Q091",
+    "Q092",
+    "Q093",
+    "Q094",
+    "Q095",
+    "Q096",
+    "Q097"
+  ],
+  "sets": [
+    {
+      "game": "halloween-01",
+      "title": "Spooky classics",
+      "theme": "Halloween",
+      "mode": "standard",
+      "filename": "halloween-01.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q001",
+          "question": "Name something that can go wrong with a Halloween costume",
+          "position": 1,
+          "source_tab": "Halloween - Spooky Classics",
+          "source_note": "Source: questions.halloween-01.csv | Estimated / unverified points | Original ID: B23-Q01",
+          "original_stage": "Main 1",
+          "answers": [
+            {
+              "answer": "It rips",
+              "points": 24
+            },
+            {
+              "answer": "It's too hot",
+              "points": 18
+            },
+            {
+              "answer": "You can't see",
+              "points": 14
+            },
+            {
+              "answer": "Someone has the same one",
+              "points": 12
+            },
+            {
+              "answer": "It's too cold outside",
+              "points": 10
+            },
+            {
+              "answer": "It doesn't fit",
+              "points": 9
+            },
+            {
+              "answer": "The face paint smears",
+              "points": 6
+            }
+          ]
+        },
+        {
+          "id": "Q003",
+          "question": "Name something you'd find in a haunted house",
+          "position": 2,
+          "source_tab": "Halloween - Spooky Classics",
+          "source_note": "Source: questions.halloween-01.csv | Estimated / unverified points | Original ID: B23-Q03",
+          "original_stage": "Main 3",
+          "answers": [
+            {
+              "answer": "Ghosts",
+              "points": 30
+            },
+            {
+              "answer": "Cobwebs",
+              "points": 16
+            },
+            {
+              "answer": "Creaky doors",
+              "points": 12
+            },
+            {
+              "answer": "Skeletons",
+              "points": 10
+            },
+            {
+              "answer": "Bats",
+              "points": 9
+            },
+            {
+              "answer": "Zombies",
+              "points": 7
+            },
+            {
+              "answer": "Actors who jump out",
+              "points": 6
+            },
+            {
+              "answer": "A creepy doll",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q009",
+          "question": "Name something kids are afraid of on Halloween",
+          "position": 3,
+          "source_tab": "Halloween - Monsters and Movies",
+          "source_note": "Source: questions.halloween-02.csv | Estimated / unverified points | Original ID: B25-Q01",
+          "original_stage": "Main 1",
+          "answers": [
+            {
+              "answer": "Ghosts",
+              "points": 35
+            },
+            {
+              "answer": "Monsters",
+              "points": 26
+            },
+            {
+              "answer": "The dark",
+              "points": 22
+            },
+            {
+              "answer": "Masks",
+              "points": 9
+            },
+            {
+              "answer": "Zombies",
+              "points": 4
+            },
+            {
+              "answer": "Witches",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q010",
+          "question": "Name a sign that a house might be haunted",
+          "position": 4,
+          "source_tab": "Halloween - Monsters and Movies",
+          "source_note": "Source: questions.halloween-02.csv | Estimated / unverified points | Original ID: B25-Q02",
+          "original_stage": "Main 2",
+          "answers": [
+            {
+              "answer": "Doors slam",
+              "points": 22
+            },
+            {
+              "answer": "Lights flicker",
+              "points": 20
+            },
+            {
+              "answer": "Strange noises",
+              "points": 18
+            },
+            {
+              "answer": "Things move",
+              "points": 14
+            },
+            {
+              "answer": "Cold spots",
+              "points": 10
+            },
+            {
+              "answer": "The dog barks at nothing",
+              "points": 8
+            },
+            {
+              "answer": "Whispers",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q011",
+          "question": "Name a famous group costume",
+          "position": 5,
+          "source_tab": "Halloween - Monsters and Movies",
+          "source_note": "Source: questions.halloween-02.csv | Estimated / unverified points | Original ID: B25-Q03",
+          "original_stage": "Main 3",
+          "answers": [
+            {
+              "answer": "The Avengers",
+              "points": 18
+            },
+            {
+              "answer": "The Scooby-Doo gang",
+              "points": 16
+            },
+            {
+              "answer": "The Wizard of Oz",
+              "points": 14
+            },
+            {
+              "answer": "The Incredibles",
+              "points": 12
+            },
+            {
+              "answer": "A box of crayons",
+              "points": 10
+            },
+            {
+              "answer": "The Addams Family",
+              "points": 10
+            },
+            {
+              "answer": "Ghostbusters",
+              "points": 8
+            },
+            {
+              "answer": "Minions",
+              "points": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game": "halloween-01",
+      "title": "Spooky classics",
+      "theme": "Halloween",
+      "mode": "fast_money",
+      "filename": "halloween-01.fast-money.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q012",
+          "question": "Name something a vampire hates",
+          "position": 1,
+          "source_tab": "Halloween - Monsters and Movies",
+          "source_note": "Source: questions.halloween-02.fast-money.csv | Estimated / unverified points | Original ID: B26-Q01",
+          "original_stage": "Fast 1",
+          "answers": [
+            {
+              "answer": "Sunlight",
+              "points": 41
+            },
+            {
+              "answer": "Garlic",
+              "points": 30
+            },
+            {
+              "answer": "Crucifix",
+              "points": 9
+            },
+            {
+              "answer": "Wooden stakes",
+              "points": 8
+            },
+            {
+              "answer": "Holy water",
+              "points": 7
+            },
+            {
+              "answer": "Mirrors",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "Q013",
+          "question": "What would you do if you saw a ghost?",
+          "position": 2,
+          "source_tab": "Halloween - Monsters and Movies",
+          "source_note": "Source: questions.halloween-02.fast-money.csv | Estimated / unverified points | Original ID: B26-Q02",
+          "original_stage": "Fast 2",
+          "answers": [
+            {
+              "answer": "Scream",
+              "points": 42
+            },
+            {
+              "answer": "Talk to it",
+              "points": 24
+            },
+            {
+              "answer": "Run",
+              "points": 18
+            },
+            {
+              "answer": "Pray",
+              "points": 4
+            },
+            {
+              "answer": "Faint",
+              "points": 3
+            },
+            {
+              "answer": "Pinch myself",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "id": "Q014",
+          "question": "Name an animal people think of at Halloween",
+          "position": 3,
+          "source_tab": "Halloween - Monsters and Movies",
+          "source_note": "Source: questions.halloween-02.fast-money.csv | Estimated / unverified points | Original ID: B26-Q03",
+          "original_stage": "Fast 3",
+          "answers": [
+            {
+              "answer": "A black cat",
+              "points": 38
+            },
+            {
+              "answer": "A bat",
+              "points": 26
+            },
+            {
+              "answer": "A spider",
+              "points": 16
+            },
+            {
+              "answer": "An owl",
+              "points": 8
+            },
+            {
+              "answer": "A crow",
+              "points": 5
+            },
+            {
+              "answer": "A wolf",
+              "points": 4
+            },
+            {
+              "answer": "A rat",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "Q052",
+          "question": "Name something you could add to a porch to make it look spooky",
+          "position": 4,
+          "source_tab": "Halloween - Party Essentials",
+          "source_note": "Source: questions.halloween-classic.estimated.csv | Estimated / unverified points | Original ID: B29-Q04",
+          "original_stage": "Fast 1",
+          "answers": [
+            {
+              "answer": "Fake cobwebs",
+              "points": 30
+            },
+            {
+              "answer": "Jack-o'-lantern",
+              "points": 25
+            },
+            {
+              "answer": "Skeleton",
+              "points": 20
+            },
+            {
+              "answer": "Ghost decoration",
+              "points": 12
+            },
+            {
+              "answer": "Fog machine",
+              "points": 8
+            },
+            {
+              "answer": "Colored lights",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "Q055",
+          "question": "Name a sound that would make a Halloween display creepier",
+          "position": 5,
+          "source_tab": "Halloween - Party Essentials",
+          "source_note": "Source: questions.halloween-classic.estimated.csv | Estimated / unverified points | Original ID: B29-Q07",
+          "original_stage": "Fast 4",
+          "answers": [
+            {
+              "answer": "Scream",
+              "points": 30
+            },
+            {
+              "answer": "Wolf howl",
+              "points": 24
+            },
+            {
+              "answer": "Evil laugh",
+              "points": 18
+            },
+            {
+              "answer": "Creaking door",
+              "points": 14
+            },
+            {
+              "answer": "Thunder",
+              "points": 9
+            },
+            {
+              "answer": "Rattling chains",
+              "points": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game": "halloween-02",
+      "title": "Trick-or-treat night",
+      "theme": "Halloween",
+      "mode": "standard",
+      "filename": "halloween-02.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q002",
+          "question": "Name something kids are disappointed to get on Halloween",
+          "position": 1,
+          "source_tab": "Halloween - Spooky Classics",
+          "source_note": "Source: questions.halloween-01.csv | Estimated / unverified points | Original ID: B23-Q02",
+          "original_stage": "Main 2",
+          "answers": [
+            {
+              "answer": "Candy corn",
+              "points": 26
+            },
+            {
+              "answer": "Raisins",
+              "points": 20
+            },
+            {
+              "answer": "Black licorice",
+              "points": 14
+            },
+            {
+              "answer": "A toothbrush",
+              "points": 12
+            },
+            {
+              "answer": "Tootsie Rolls",
+              "points": 10
+            },
+            {
+              "answer": "Smarties",
+              "points": 6
+            },
+            {
+              "answer": "Circus peanuts",
+              "points": 4
+            },
+            {
+              "answer": "Pennies",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "id": "Q017",
+          "question": "Name something parents do with their kids' Halloween candy",
+          "position": 2,
+          "source_tab": "Halloween - Trick or Treat",
+          "source_note": "Source: questions.halloween-03.csv | Estimated / unverified points | Original ID: B27-Q01",
+          "original_stage": "Main 1",
+          "answers": [
+            {
+              "answer": "Eat some",
+              "points": 40
+            },
+            {
+              "answer": "Hide it",
+              "points": 18
+            },
+            {
+              "answer": "Check it",
+              "points": 14
+            },
+            {
+              "answer": "Ration it",
+              "points": 10
+            },
+            {
+              "answer": "Take it to work",
+              "points": 7
+            },
+            {
+              "answer": "Throw some out",
+              "points": 6
+            },
+            {
+              "answer": "Donate it",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q018",
+          "question": "Name something people say when they open the door to trick-or-treaters",
+          "position": 3,
+          "source_tab": "Halloween - Trick or Treat",
+          "source_note": "Source: questions.halloween-03.csv | Estimated / unverified points | Original ID: B27-Q02",
+          "original_stage": "Main 2",
+          "answers": [
+            {
+              "answer": "Happy Halloween",
+              "points": 28
+            },
+            {
+              "answer": "What are you dressed as?",
+              "points": 20
+            },
+            {
+              "answer": "Take one",
+              "points": 16
+            },
+            {
+              "answer": "Trick or treat",
+              "points": 12
+            },
+            {
+              "answer": "Ooh, scary!",
+              "points": 10
+            },
+            {
+              "answer": "I love your costume",
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q019",
+          "question": "Name something you do with the inside of a pumpkin",
+          "position": 4,
+          "source_tab": "Halloween - Trick or Treat",
+          "source_note": "Source: questions.halloween-03.csv | Estimated / unverified points | Original ID: B27-Q03",
+          "original_stage": "Main 3",
+          "answers": [
+            {
+              "answer": "Throw it away",
+              "points": 30
+            },
+            {
+              "answer": "Roast the seeds",
+              "points": 28
+            },
+            {
+              "answer": "Make pie",
+              "points": 14
+            },
+            {
+              "answer": "Compost it",
+              "points": 8
+            },
+            {
+              "answer": "Squish it",
+              "points": 7
+            },
+            {
+              "answer": "Make soup",
+              "points": 6
+            },
+            {
+              "answer": "Feed it to animals",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q050",
+          "question": "Name something you would carry on a trick-or-treating walk",
+          "position": 5,
+          "source_tab": "Halloween - Party Essentials",
+          "source_note": "Source: questions.halloween-classic.estimated.csv | Estimated / unverified points | Original ID: B29-Q02",
+          "original_stage": "Main 2",
+          "answers": [
+            {
+              "answer": "Candy bucket",
+              "points": 35
+            },
+            {
+              "answer": "Flashlight",
+              "points": 25
+            },
+            {
+              "answer": "Phone",
+              "points": 16
+            },
+            {
+              "answer": "Spare jacket",
+              "points": 12
+            },
+            {
+              "answer": "Umbrella",
+              "points": 8
+            },
+            {
+              "answer": "Water bottle",
+              "points": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game": "halloween-02",
+      "title": "Trick-or-treat night",
+      "theme": "Halloween",
+      "mode": "fast_money",
+      "filename": "halloween-02.fast-money.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q020",
+          "question": "Name a candy bar",
+          "position": 1,
+          "source_tab": "Halloween - Trick or Treat",
+          "source_note": "Source: questions.halloween-03.fast-money.csv | Estimated / unverified points | Original ID: B28-Q01",
+          "original_stage": "Fast 1",
+          "answers": [
+            {
+              "answer": "Snickers",
+              "points": 28
+            },
+            {
+              "answer": "Kit Kat",
+              "points": 20
+            },
+            {
+              "answer": "Milky Way",
+              "points": 12
+            },
+            {
+              "answer": "Hershey's",
+              "points": 12
+            }
+          ]
+        },
+        {
+          "id": "Q023",
+          "question": "Name something you do at a sleepover",
+          "position": 2,
+          "source_tab": "Halloween - Trick or Treat",
+          "source_note": "Source: questions.halloween-03.fast-money.csv | Estimated / unverified points | Original ID: B28-Q04",
+          "original_stage": "Fast 4",
+          "answers": [
+            {
+              "answer": "Watch movies",
+              "points": 30
+            },
+            {
+              "answer": "Tell scary stories",
+              "points": 20
+            },
+            {
+              "answer": "Eat snacks",
+              "points": 16
+            },
+            {
+              "answer": "Play games",
+              "points": 12
+            }
+          ]
+        },
+        {
+          "id": "Q053",
+          "question": "Name a tool or supply you would set out before carving a pumpkin",
+          "position": 3,
+          "source_tab": "Halloween - Party Essentials",
+          "source_note": "Source: questions.halloween-classic.estimated.csv | Estimated / unverified points | Original ID: B29-Q05",
+          "original_stage": "Fast 2",
+          "answers": [
+            {
+              "answer": "Carving knife",
+              "points": 34
+            },
+            {
+              "answer": "Spoon",
+              "points": 24
+            },
+            {
+              "answer": "Marker",
+              "points": 18
+            },
+            {
+              "answer": "Newspaper",
+              "points": 12
+            },
+            {
+              "answer": "Bowl",
+              "points": 8
+            },
+            {
+              "answer": "Stencil",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q056",
+          "question": "Name a warm food or drink you might serve after trick-or-treating",
+          "position": 4,
+          "source_tab": "Halloween - Party Essentials",
+          "source_note": "Source: questions.halloween-classic.estimated.csv | Estimated / unverified points | Original ID: B29-Q08",
+          "original_stage": "Fast 5",
+          "answers": [
+            {
+              "answer": "Hot chocolate",
+              "points": 34
+            },
+            {
+              "answer": "Apple cider",
+              "points": 24
+            },
+            {
+              "answer": "Soup",
+              "points": 18
+            },
+            {
+              "answer": "Chili",
+              "points": 12
+            },
+            {
+              "answer": "Pizza",
+              "points": 8
+            },
+            {
+              "answer": "Tea",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q063",
+          "question": "Name something a pumpkin might worry about in October",
+          "position": 5,
+          "source_tab": "Halloween - Monster Problems",
+          "source_note": "Source: questions.halloween-funny.estimated.csv | Estimated / unverified points | Original ID: B30-Q07",
+          "original_stage": "Fast 4",
+          "answers": [
+            {
+              "answer": "Being carved",
+              "points": 36
+            },
+            {
+              "answer": "Becoming a pie",
+              "points": 24
+            },
+            {
+              "answer": "Being smashed",
+              "points": 16
+            },
+            {
+              "answer": "Rotting",
+              "points": 12
+            },
+            {
+              "answer": "Squirrels",
+              "points": 8
+            },
+            {
+              "answer": "Being left in the patch",
+              "points": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game": "halloween-03",
+      "title": "Party monsters",
+      "theme": "Halloween",
+      "mode": "standard",
+      "filename": "halloween-03.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q049",
+          "question": "Name a creature you would put on a Halloween party invitation",
+          "position": 1,
+          "source_tab": "Halloween - Party Essentials",
+          "source_note": "Source: questions.halloween-classic.estimated.csv | Estimated / unverified points | Original ID: B29-Q01",
+          "original_stage": "Main 1",
+          "answers": [
+            {
+              "answer": "Ghost",
+              "points": 30
+            },
+            {
+              "answer": "Bat",
+              "points": 24
+            },
+            {
+              "answer": "Spider",
+              "points": 18
+            },
+            {
+              "answer": "Vampire",
+              "points": 12
+            },
+            {
+              "answer": "Skeleton",
+              "points": 10
+            },
+            {
+              "answer": "Black cat",
+              "points": 6
+            }
+          ]
+        },
+        {
+          "id": "Q051",
+          "question": "Name a treat that might disappear first from a Halloween candy bowl",
+          "position": 2,
+          "source_tab": "Halloween - Party Essentials",
+          "source_note": "Source: questions.halloween-classic.estimated.csv | Estimated / unverified points | Original ID: B29-Q03",
+          "original_stage": "Main 3",
+          "answers": [
+            {
+              "answer": "Peanut butter cups",
+              "points": 32
+            },
+            {
+              "answer": "Chocolate bars",
+              "points": 26
+            },
+            {
+              "answer": "Gummy candy",
+              "points": 18
+            },
+            {
+              "answer": "Sour candy",
+              "points": 12
+            },
+            {
+              "answer": "Lollipops",
+              "points": 8
+            },
+            {
+              "answer": "Candy corn",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q057",
+          "question": "Name something that would make a ghost terrible at hide-and-seek",
+          "position": 3,
+          "source_tab": "Halloween - Monster Problems",
+          "source_note": "Source: questions.halloween-funny.estimated.csv | Estimated / unverified points | Original ID: B30-Q01",
+          "original_stage": "Main 1",
+          "answers": [
+            {
+              "answer": "Loud booing",
+              "points": 32
+            },
+            {
+              "answer": "Glowing in the dark",
+              "points": 24
+            },
+            {
+              "answer": "Rattling chains",
+              "points": 18
+            },
+            {
+              "answer": "Sneezing",
+              "points": 12
+            },
+            {
+              "answer": "Giggling",
+              "points": 9
+            },
+            {
+              "answer": "Floating through the hiding spot",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "Q058",
+          "question": "Name an ordinary household task that would be awkward for a skeleton",
+          "position": 4,
+          "source_tab": "Halloween - Monster Problems",
+          "source_note": "Source: questions.halloween-funny.estimated.csv | Estimated / unverified points | Original ID: B30-Q02",
+          "original_stage": "Main 2",
+          "answers": [
+            {
+              "answer": "Washing dishes",
+              "points": 28
+            },
+            {
+              "answer": "Getting dressed",
+              "points": 24
+            },
+            {
+              "answer": "Dusting",
+              "points": 18
+            },
+            {
+              "answer": "Vacuuming",
+              "points": 14
+            },
+            {
+              "answer": "Making the bed",
+              "points": 10
+            },
+            {
+              "answer": "Folding laundry",
+              "points": 6
+            }
+          ]
+        },
+        {
+          "id": "Q059",
+          "question": "Name something a vampire might complain about in a hotel review",
+          "position": 5,
+          "source_tab": "Halloween - Monster Problems",
+          "source_note": "Source: questions.halloween-funny.estimated.csv | Estimated / unverified points | Original ID: B30-Q03",
+          "original_stage": "Main 3",
+          "answers": [
+            {
+              "answer": "Too much sunlight",
+              "points": 36
+            },
+            {
+              "answer": "Garlic on the menu",
+              "points": 24
+            },
+            {
+              "answer": "No blackout curtains",
+              "points": 16
+            },
+            {
+              "answer": "No coffin",
+              "points": 12
+            },
+            {
+              "answer": "Mirrors everywhere",
+              "points": 8
+            },
+            {
+              "answer": "Early checkout",
+              "points": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game": "halloween-03",
+      "title": "Party monsters",
+      "theme": "Halloween",
+      "mode": "fast_money",
+      "filename": "halloween-03.fast-money.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q054",
+          "question": "Name something you would expect to see inside a cartoon witch's home",
+          "position": 1,
+          "source_tab": "Halloween - Party Essentials",
+          "source_note": "Source: questions.halloween-classic.estimated.csv | Estimated / unverified points | Original ID: B29-Q06",
+          "original_stage": "Fast 3",
+          "answers": [
+            {
+              "answer": "Cauldron",
+              "points": 36
+            },
+            {
+              "answer": "Broom",
+              "points": 24
+            },
+            {
+              "answer": "Spell book",
+              "points": 16
+            },
+            {
+              "answer": "Black cat",
+              "points": 12
+            },
+            {
+              "answer": "Potion bottles",
+              "points": 8
+            },
+            {
+              "answer": "Crystal ball",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q060",
+          "question": "Name something a werewolf would hate explaining to a dog groomer",
+          "position": 2,
+          "source_tab": "Halloween - Monster Problems",
+          "source_note": "Source: questions.halloween-funny.estimated.csv | Estimated / unverified points | Original ID: B30-Q04",
+          "original_stage": "Fast 1",
+          "answers": [
+            {
+              "answer": "Shedding",
+              "points": 32
+            },
+            {
+              "answer": "Howling",
+              "points": 24
+            },
+            {
+              "answer": "Huge claws",
+              "points": 18
+            },
+            {
+              "answer": "Biting",
+              "points": 12
+            },
+            {
+              "answer": "Changing back into a human",
+              "points": 9
+            },
+            {
+              "answer": "Fleas",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "Q061",
+          "question": "Name a reason a witch's broom might fail its driving test",
+          "position": 3,
+          "source_tab": "Halloween - Monster Problems",
+          "source_note": "Source: questions.halloween-funny.estimated.csv | Estimated / unverified points | Original ID: B30-Q05",
+          "original_stage": "Fast 2",
+          "answers": [
+            {
+              "answer": "Flying too fast",
+              "points": 30
+            },
+            {
+              "answer": "Crashing into a tree",
+              "points": 24
+            },
+            {
+              "answer": "Not signaling",
+              "points": 18
+            },
+            {
+              "answer": "Bad parking",
+              "points": 14
+            },
+            {
+              "answer": "Flying through a red light",
+              "points": 9
+            },
+            {
+              "answer": "Losing the passenger",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "Q062",
+          "question": "Name something that could ruin a mummy's relaxing spa day",
+          "position": 4,
+          "source_tab": "Halloween - Monster Problems",
+          "source_note": "Source: questions.halloween-funny.estimated.csv | Estimated / unverified points | Original ID: B30-Q06",
+          "original_stage": "Fast 3",
+          "answers": [
+            {
+              "answer": "Getting wet",
+              "points": 34
+            },
+            {
+              "answer": "Bandages unraveling",
+              "points": 26
+            },
+            {
+              "answer": "A massage",
+              "points": 16
+            },
+            {
+              "answer": "Getting mistaken for towels",
+              "points": 12
+            },
+            {
+              "answer": "A hot tub",
+              "points": 8
+            },
+            {
+              "answer": "Running out of bandages",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q064",
+          "question": "Name a reason a monster might get sent home from school",
+          "position": 5,
+          "source_tab": "Halloween - Monster Problems",
+          "source_note": "Source: questions.halloween-funny.estimated.csv | Estimated / unverified points | Original ID: B30-Q08",
+          "original_stage": "Fast 5",
+          "answers": [
+            {
+              "answer": "Scaring classmates",
+              "points": 32
+            },
+            {
+              "answer": "Eating homework",
+              "points": 24
+            },
+            {
+              "answer": "Roaring in class",
+              "points": 18
+            },
+            {
+              "answer": "Breaking a desk",
+              "points": 12
+            },
+            {
+              "answer": "Slime everywhere",
+              "points": 9
+            },
+            {
+              "answer": "Not fitting through the door",
+              "points": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game": "funny-general-01",
+      "title": "Everyday absurdities",
+      "theme": "Funny / General",
+      "mode": "standard",
+      "filename": "funny-general-01.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q025",
+          "question": "If your refrigerator could talk, what complaint would it have about you?",
+          "position": 1,
+          "source_tab": "Funny - Everyday Absurdities",
+          "source_note": "Source: questions.funny-general-01.csv | Estimated / unverified points | Original ID: B17-Q01",
+          "original_stage": "Main 1",
+          "answers": [
+            {
+              "answer": "Too much expired food",
+              "points": 30
+            },
+            {
+              "answer": "Opening it too often",
+              "points": 25
+            },
+            {
+              "answer": "Not cleaning spills promptly",
+              "points": 20
+            },
+            {
+              "answer": "Ignoring the vegetables",
+              "points": 15
+            },
+            {
+              "answer": "Stocking it with weird leftovers",
+              "points": 10
+            }
+          ]
+        },
+        {
+          "id": "Q026",
+          "question": "Name something that might be full of holes",
+          "position": 2,
+          "source_tab": "Funny - Everyday Absurdities",
+          "source_note": "Source: questions.funny-general-01.csv | Estimated / unverified points | Original ID: B17-Q02",
+          "original_stage": "Main 2",
+          "answers": [
+            {
+              "answer": "Swiss cheese",
+              "points": 40
+            },
+            {
+              "answer": "Clothes / socks",
+              "points": 16
+            },
+            {
+              "answer": "Alibi / story",
+              "points": 14
+            },
+            {
+              "answer": "Net / fishing net",
+              "points": 9
+            },
+            {
+              "answer": "Colander / strainer",
+              "points": 8
+            },
+            {
+              "answer": "Golf course",
+              "points": 2
+            },
+            {
+              "answer": "Screen",
+              "points": 2
+            },
+            {
+              "answer": "Road / street",
+              "points": 2
+            }
+          ]
+        },
+        {
+          "id": "Q027",
+          "question": "Name something you might find under a couch that hasn't moved in ten years",
+          "position": 3,
+          "source_tab": "Funny - Everyday Absurdities",
+          "source_note": "Source: questions.funny-general-01.csv | Estimated / unverified points | Original ID: B17-Q04",
+          "original_stage": "Main 3",
+          "answers": [
+            {
+              "answer": "Money / change",
+              "points": 52
+            },
+            {
+              "answer": "Dust",
+              "points": 25
+            },
+            {
+              "answer": "Food",
+              "points": 7
+            },
+            {
+              "answer": "Toys",
+              "points": 5
+            },
+            {
+              "answer": "Remote",
+              "points": 4
+            },
+            {
+              "answer": "Clothes / shoes",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q068",
+          "question": "Name something people confidently assemble without reading the instructions",
+          "position": 4,
+          "source_tab": "Funny - Daily Chaos",
+          "source_note": "Source: questions.funny-everyday.estimated.csv | Estimated / unverified points | Original ID: B16-Q04",
+          "original_stage": "Fast 1",
+          "answers": [
+            {
+              "answer": "Furniture",
+              "points": 36
+            },
+            {
+              "answer": "Toy",
+              "points": 24
+            },
+            {
+              "answer": "Grill",
+              "points": 16
+            },
+            {
+              "answer": "Tent",
+              "points": 12
+            },
+            {
+              "answer": "Exercise equipment",
+              "points": 8
+            },
+            {
+              "answer": "Bicycle",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q072",
+          "question": "Name something people say to a computer that cannot understand them",
+          "position": 5,
+          "source_tab": "Funny - Daily Chaos",
+          "source_note": "Source: questions.funny-everyday.estimated.csv | Estimated / unverified points | Original ID: B16-Q08",
+          "original_stage": "Fast 5",
+          "answers": [
+            {
+              "answer": "Hurry up",
+              "points": 34
+            },
+            {
+              "answer": "Why are you doing this",
+              "points": 24
+            },
+            {
+              "answer": "Please work",
+              "points": 18
+            },
+            {
+              "answer": "Not now",
+              "points": 12
+            },
+            {
+              "answer": "I just saved that",
+              "points": 8
+            },
+            {
+              "answer": "You worked yesterday",
+              "points": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game": "funny-general-01",
+      "title": "Everyday absurdities",
+      "theme": "Funny / General",
+      "mode": "fast_money",
+      "filename": "funny-general-01.fast-money.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q028",
+          "question": "Other than feet, name something that runs",
+          "position": 1,
+          "source_tab": "Funny - Everyday Absurdities",
+          "source_note": "Source: questions.funny-general-01.fast-money.csv | Estimated / unverified points | Original ID: B18-Q01",
+          "original_stage": "Fast 1",
+          "answers": [
+            {
+              "answer": "Water",
+              "points": 37
+            },
+            {
+              "answer": "Engine / car",
+              "points": 24
+            },
+            {
+              "answer": "Refrigerator",
+              "points": 10
+            },
+            {
+              "answer": "Nose",
+              "points": 8
+            },
+            {
+              "answer": "Pantyhose",
+              "points": 8
+            },
+            {
+              "answer": "Clock",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "id": "Q029",
+          "question": "Name an animal that's easy to imitate in charades",
+          "position": 2,
+          "source_tab": "Funny - Everyday Absurdities",
+          "source_note": "Source: questions.funny-general-01.fast-money.csv | Estimated / unverified points | Original ID: B18-Q02",
+          "original_stage": "Fast 2",
+          "answers": [
+            {
+              "answer": "Monkey / ape",
+              "points": 32
+            },
+            {
+              "answer": "Dog",
+              "points": 21
+            },
+            {
+              "answer": "Cat",
+              "points": 16
+            },
+            {
+              "answer": "Bird",
+              "points": 14
+            },
+            {
+              "answer": "Elephant",
+              "points": 4
+            },
+            {
+              "answer": "Kangaroo",
+              "points": 4
+            },
+            {
+              "answer": "Rabbit",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q030",
+          "question": "Name a noise that people can't prevent themselves from making",
+          "position": 3,
+          "source_tab": "Funny - Everyday Absurdities",
+          "source_note": "Source: questions.funny-general-01.fast-money.csv | Estimated / unverified points | Original ID: B18-Q03",
+          "original_stage": "Fast 3",
+          "answers": [
+            {
+              "answer": "Burp",
+              "points": 29
+            },
+            {
+              "answer": "Sneeze",
+              "points": 26
+            },
+            {
+              "answer": "Snore",
+              "points": 10
+            },
+            {
+              "answer": "Passing gas",
+              "points": 10
+            },
+            {
+              "answer": "Hiccup",
+              "points": 9
+            },
+            {
+              "answer": "Cough",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q031",
+          "question": "Name something that people stretch",
+          "position": 4,
+          "source_tab": "Funny - Everyday Absurdities",
+          "source_note": "Source: questions.funny-general-01.fast-money.csv | Estimated / unverified points | Original ID: B18-Q04",
+          "original_stage": "Fast 4",
+          "answers": [
+            {
+              "answer": "Legs / bodies",
+              "points": 44
+            },
+            {
+              "answer": "Rubber band",
+              "points": 22
+            },
+            {
+              "answer": "Budget / money",
+              "points": 12
+            },
+            {
+              "answer": "Clothes / shoes",
+              "points": 11
+            },
+            {
+              "answer": "The truth",
+              "points": 7
+            }
+          ]
+        },
+        {
+          "id": "Q032",
+          "question": "Name something that shakes",
+          "position": 5,
+          "source_tab": "Funny - Everyday Absurdities",
+          "source_note": "Source: questions.funny-general-01.fast-money.csv | Estimated / unverified points | Original ID: B18-Q05",
+          "original_stage": "Fast 5",
+          "answers": [
+            {
+              "answer": "Jello",
+              "points": 34
+            },
+            {
+              "answer": "Person / dancer",
+              "points": 26
+            },
+            {
+              "answer": "Earth / earthquake",
+              "points": 9
+            },
+            {
+              "answer": "Baby's rattle",
+              "points": 7
+            },
+            {
+              "answer": "Leaves / tree",
+              "points": 5
+            },
+            {
+              "answer": "Dog",
+              "points": 4
+            },
+            {
+              "answer": "Old car",
+              "points": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game": "funny-general-02",
+      "title": "Daily mishaps",
+      "theme": "Funny / General",
+      "mode": "standard",
+      "filename": "funny-general-02.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q033",
+          "question": "Name something embarrassing you might do while listening to headphones",
+          "position": 1,
+          "source_tab": "Funny - Everyday Mishaps",
+          "source_note": "Source: questions.funny-general-02.csv | Estimated / unverified points | Original ID: B19-Q01",
+          "original_stage": "Main 1",
+          "answers": [
+            {
+              "answer": "Sing",
+              "points": 52
+            },
+            {
+              "answer": "Speak loudly",
+              "points": 22
+            },
+            {
+              "answer": "Dance",
+              "points": 13
+            },
+            {
+              "answer": "Ignore someone",
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q034",
+          "question": "Name something people lose on a roller coaster",
+          "position": 2,
+          "source_tab": "Funny - Everyday Mishaps",
+          "source_note": "Source: questions.funny-general-02.csv | Estimated / unverified points | Original ID: B19-Q02",
+          "original_stage": "Main 2",
+          "answers": [
+            {
+              "answer": "Money",
+              "points": 29
+            },
+            {
+              "answer": "Their lunch",
+              "points": 18
+            },
+            {
+              "answer": "Hat",
+              "points": 12
+            },
+            {
+              "answer": "Sunglasses",
+              "points": 10
+            },
+            {
+              "answer": "Keys",
+              "points": 10
+            },
+            {
+              "answer": "Shoe",
+              "points": 6
+            },
+            {
+              "answer": "Jewelry",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "Q035",
+          "question": "Name something that often doesn't start when it's supposed to",
+          "position": 3,
+          "source_tab": "Funny - Everyday Mishaps",
+          "source_note": "Source: questions.funny-general-02.csv | Estimated / unverified points | Original ID: B19-Q03",
+          "original_stage": "Main 3",
+          "answers": [
+            {
+              "answer": "Car",
+              "points": 52
+            },
+            {
+              "answer": "Movie",
+              "points": 7
+            },
+            {
+              "answer": "Wedding",
+              "points": 7
+            },
+            {
+              "answer": "Lawn mower",
+              "points": 7
+            },
+            {
+              "answer": "Meeting",
+              "points": 5
+            },
+            {
+              "answer": "Sporting event",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q065",
+          "question": "Name something people check twice even though they checked it a minute ago",
+          "position": 4,
+          "source_tab": "Funny - Daily Chaos",
+          "source_note": "Source: questions.funny-everyday.estimated.csv | Estimated / unverified points | Original ID: B16-Q01",
+          "original_stage": "Main 1",
+          "answers": [
+            {
+              "answer": "Phone",
+              "points": 34
+            },
+            {
+              "answer": "Door lock",
+              "points": 24
+            },
+            {
+              "answer": "Time",
+              "points": 18
+            },
+            {
+              "answer": "Fridge",
+              "points": 12
+            },
+            {
+              "answer": "Oven",
+              "points": 8
+            },
+            {
+              "answer": "Weather forecast",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q070",
+          "question": "Name something that always seems to vanish when you are already late",
+          "position": 5,
+          "source_tab": "Funny - Daily Chaos",
+          "source_note": "Source: questions.funny-everyday.estimated.csv | Estimated / unverified points | Original ID: B16-Q06",
+          "original_stage": "Fast 3",
+          "answers": [
+            {
+              "answer": "Keys",
+              "points": 36
+            },
+            {
+              "answer": "Phone",
+              "points": 24
+            },
+            {
+              "answer": "Wallet",
+              "points": 16
+            },
+            {
+              "answer": "Shoes",
+              "points": 12
+            },
+            {
+              "answer": "Glasses",
+              "points": 8
+            },
+            {
+              "answer": "Child's backpack",
+              "points": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game": "funny-general-02",
+      "title": "Daily mishaps",
+      "theme": "Funny / General",
+      "mode": "fast_money",
+      "filename": "funny-general-02.fast-money.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q036",
+          "question": "Name something that can be inflated or deflated",
+          "position": 1,
+          "source_tab": "Funny - Everyday Mishaps",
+          "source_note": "Source: questions.funny-general-02.fast-money.csv | Estimated / unverified points | Original ID: B20-Q01",
+          "original_stage": "Fast 1",
+          "answers": [
+            {
+              "answer": "Balloon",
+              "points": 44
+            },
+            {
+              "answer": "Tire",
+              "points": 25
+            },
+            {
+              "answer": "Beach ball",
+              "points": 10
+            },
+            {
+              "answer": "Ego",
+              "points": 7
+            },
+            {
+              "answer": "Raft",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "Q037",
+          "question": "Name something a person might get caught in",
+          "position": 2,
+          "source_tab": "Funny - Everyday Mishaps",
+          "source_note": "Source: questions.funny-general-02.fast-money.csv | Estimated / unverified points | Original ID: B20-Q02",
+          "original_stage": "Fast 2",
+          "answers": [
+            {
+              "answer": "Rain",
+              "points": 24
+            },
+            {
+              "answer": "Lie",
+              "points": 22
+            },
+            {
+              "answer": "Trap",
+              "points": 10
+            },
+            {
+              "answer": "Traffic",
+              "points": 10
+            },
+            {
+              "answer": "Net",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "Q038",
+          "question": "Name something people let pile up",
+          "position": 3,
+          "source_tab": "Funny - Everyday Mishaps",
+          "source_note": "Source: questions.funny-general-02.fast-money.csv | Estimated / unverified points | Original ID: B20-Q03",
+          "original_stage": "Fast 3",
+          "answers": [
+            {
+              "answer": "Laundry / ironing",
+              "points": 51
+            },
+            {
+              "answer": "Dishes",
+              "points": 13
+            },
+            {
+              "answer": "Mail / correspondence",
+              "points": 10
+            },
+            {
+              "answer": "Bills",
+              "points": 10
+            }
+          ]
+        },
+        {
+          "id": "Q039",
+          "question": "Name something a child says when they do something wrong",
+          "position": 4,
+          "source_tab": "Funny - Everyday Mishaps",
+          "source_note": "Source: questions.funny-general-02.fast-money.csv | Estimated / unverified points | Original ID: B20-Q04",
+          "original_stage": "Fast 4",
+          "answers": [
+            {
+              "answer": "I'm sorry",
+              "points": 56
+            },
+            {
+              "answer": "Whoops",
+              "points": 23
+            },
+            {
+              "answer": "Uh oh",
+              "points": 12
+            },
+            {
+              "answer": "I didn't do it",
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q040",
+          "question": "Name something a pet owner might wish their cat did less of",
+          "position": 5,
+          "source_tab": "Funny - Everyday Mishaps",
+          "source_note": "Source: questions.funny-general-02.fast-money.csv | Estimated / unverified points | Original ID: B20-Q05",
+          "original_stage": "Fast 5",
+          "answers": [
+            {
+              "answer": "Meow",
+              "points": 42
+            },
+            {
+              "answer": "Scratch",
+              "points": 34
+            },
+            {
+              "answer": "Shed",
+              "points": 14
+            },
+            {
+              "answer": "Bite",
+              "points": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game": "funny-general-03",
+      "title": "Kids, pets and home",
+      "theme": "Funny / General",
+      "mode": "standard",
+      "filename": "funny-general-03.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q041",
+          "question": "Name something kids must be forced to do that adults love doing",
+          "position": 1,
+          "source_tab": "Funny - Kids and Pets",
+          "source_note": "Source: questions.funny-general-03.csv | Estimated / unverified points | Original ID: B21-Q01",
+          "original_stage": "Main 1",
+          "answers": [
+            {
+              "answer": "Sleeping",
+              "points": 43
+            },
+            {
+              "answer": "Eat supper",
+              "points": 33
+            },
+            {
+              "answer": "Taking baths",
+              "points": 13
+            },
+            {
+              "answer": "Clean",
+              "points": 6
+            },
+            {
+              "answer": "Read",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "Q042",
+          "question": "Name something a mom might hear that tells her the kids are up to no good",
+          "position": 2,
+          "source_tab": "Funny - Kids and Pets",
+          "source_note": "Source: questions.funny-general-03.csv | Estimated / unverified points | Original ID: B21-Q02",
+          "original_stage": "Main 2",
+          "answers": [
+            {
+              "answer": "Silence",
+              "points": 44
+            },
+            {
+              "answer": "Giggling",
+              "points": 20
+            },
+            {
+              "answer": "Whispering",
+              "points": 11
+            },
+            {
+              "answer": "A crash",
+              "points": 7
+            },
+            {
+              "answer": "Screaming",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "Q043",
+          "question": "Name something humans wear, but cats look silly in",
+          "position": 3,
+          "source_tab": "Funny - Kids and Pets",
+          "source_note": "Source: questions.funny-general-03.csv | Estimated / unverified points | Original ID: B21-Q03",
+          "original_stage": "Main 3",
+          "answers": [
+            {
+              "answer": "Hats",
+              "points": 44
+            },
+            {
+              "answer": "Shoes",
+              "points": 31
+            },
+            {
+              "answer": "Glasses",
+              "points": 12
+            },
+            {
+              "answer": "Sweater",
+              "points": 10
+            }
+          ]
+        },
+        {
+          "id": "Q066",
+          "question": "Name something a person might blame on the family dog",
+          "position": 4,
+          "source_tab": "Funny - Daily Chaos",
+          "source_note": "Source: questions.funny-everyday.estimated.csv | Estimated / unverified points | Original ID: B16-Q02",
+          "original_stage": "Main 2",
+          "answers": [
+            {
+              "answer": "A bad smell",
+              "points": 32
+            },
+            {
+              "answer": "Missing food",
+              "points": 26
+            },
+            {
+              "answer": "A mess",
+              "points": 18
+            },
+            {
+              "answer": "Broken furniture",
+              "points": 12
+            },
+            {
+              "answer": "Chewed homework",
+              "points": 8
+            },
+            {
+              "answer": "Muddy footprints",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q069",
+          "question": "Name something you might hide just before unexpected guests arrive",
+          "position": 5,
+          "source_tab": "Funny - Daily Chaos",
+          "source_note": "Source: questions.funny-everyday.estimated.csv | Estimated / unverified points | Original ID: B16-Q05",
+          "original_stage": "Fast 2",
+          "answers": [
+            {
+              "answer": "Dirty laundry",
+              "points": 34
+            },
+            {
+              "answer": "Dirty dishes",
+              "points": 24
+            },
+            {
+              "answer": "Toys",
+              "points": 18
+            },
+            {
+              "answer": "Clutter",
+              "points": 12
+            },
+            {
+              "answer": "Food wrappers",
+              "points": 8
+            },
+            {
+              "answer": "Unmade bed",
+              "points": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game": "funny-general-03",
+      "title": "Kids, pets and home",
+      "theme": "Funny / General",
+      "mode": "fast_money",
+      "filename": "funny-general-03.fast-money.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q044",
+          "question": "Besides the weasel, name something that goes pop",
+          "position": 1,
+          "source_tab": "Funny - Kids and Pets",
+          "source_note": "Source: questions.funny-general-03.fast-money.csv | Estimated / unverified points | Original ID: B22-Q01",
+          "original_stage": "Fast 1",
+          "answers": [
+            {
+              "answer": "Popcorn",
+              "points": 24
+            },
+            {
+              "answer": "Rice Krispies",
+              "points": 17
+            },
+            {
+              "answer": "Balloons",
+              "points": 10
+            },
+            {
+              "answer": "Pringles",
+              "points": 5
+            },
+            {
+              "answer": "Bubbles",
+              "points": 4
+            }
+          ]
+        },
+        {
+          "id": "Q045",
+          "question": "Name something that's really hairy",
+          "position": 2,
+          "source_tab": "Funny - Kids and Pets",
+          "source_note": "Source: questions.funny-general-03.fast-money.csv | Estimated / unverified points | Original ID: B22-Q02",
+          "original_stage": "Fast 2",
+          "answers": [
+            {
+              "answer": "Ape",
+              "points": 38
+            },
+            {
+              "answer": "Dog",
+              "points": 27
+            },
+            {
+              "answer": "Human",
+              "points": 15
+            },
+            {
+              "answer": "Cat",
+              "points": 7
+            },
+            {
+              "answer": "Bear",
+              "points": 5
+            },
+            {
+              "answer": "Skunk",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "id": "Q046",
+          "question": "Name something people catch",
+          "position": 3,
+          "source_tab": "Funny - Kids and Pets",
+          "source_note": "Source: questions.funny-general-03.fast-money.csv | Estimated / unverified points | Original ID: B22-Q03",
+          "original_stage": "Fast 3",
+          "answers": [
+            {
+              "answer": "Illness",
+              "points": 41
+            },
+            {
+              "answer": "Fish",
+              "points": 36
+            },
+            {
+              "answer": "Balls",
+              "points": 15
+            },
+            {
+              "answer": "Bouquet",
+              "points": 3
+            }
+          ]
+        },
+        {
+          "id": "Q047",
+          "question": "Name something you might climb a tree to get",
+          "position": 4,
+          "source_tab": "Funny - Kids and Pets",
+          "source_note": "Source: questions.funny-general-03.fast-money.csv | Estimated / unverified points | Original ID: B22-Q04",
+          "original_stage": "Fast 4",
+          "answers": [
+            {
+              "answer": "Cat",
+              "points": 42
+            },
+            {
+              "answer": "Fruit",
+              "points": 24
+            },
+            {
+              "answer": "Ball",
+              "points": 21
+            },
+            {
+              "answer": "Kite",
+              "points": 11
+            }
+          ]
+        },
+        {
+          "id": "Q048",
+          "question": "Name a reason kids give for not eating vegetables",
+          "position": 5,
+          "source_tab": "Funny - Kids and Pets",
+          "source_note": "Source: questions.funny-general-03.fast-money.csv | Estimated / unverified points | Original ID: B22-Q05",
+          "original_stage": "Fast 5",
+          "answers": [
+            {
+              "answer": "Don't like the taste",
+              "points": 39
+            },
+            {
+              "answer": "Green color",
+              "points": 28
+            },
+            {
+              "answer": "Too full",
+              "points": 13
+            },
+            {
+              "answer": "They make them sick",
+              "points": 12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game": "funny-general-04",
+      "title": "Family game night",
+      "theme": "Funny / General",
+      "mode": "standard",
+      "filename": "funny-general-04.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q073",
+          "question": "Name something you find in a kitchen",
+          "position": 1,
+          "source_tab": "General - Family Game Night",
+          "source_note": "Source: questions.template.csv | Estimated / unverified points | Original ID: B31-Q01",
+          "original_stage": "Main 1",
+          "answers": [
+            {
+              "answer": "Refrigerator",
+              "points": 38
+            },
+            {
+              "answer": "Stove",
+              "points": 22
+            },
+            {
+              "answer": "Sink",
+              "points": 14
+            },
+            {
+              "answer": "Microwave",
+              "points": 11
+            },
+            {
+              "answer": "Dishwasher",
+              "points": 8
+            },
+            {
+              "answer": "Toaster",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "Q074",
+          "question": "Name a popular pizza topping",
+          "position": 2,
+          "source_tab": "General - Family Game Night",
+          "source_note": "Source: questions.template.csv | Estimated / unverified points | Original ID: B31-Q02",
+          "original_stage": "Main 2",
+          "answers": [
+            {
+              "answer": "Pepperoni",
+              "points": 42
+            },
+            {
+              "answer": "Cheese",
+              "points": 22
+            },
+            {
+              "answer": "Mushrooms",
+              "points": 14
+            },
+            {
+              "answer": "Sausage",
+              "points": 10
+            },
+            {
+              "answer": "Onions",
+              "points": 7
+            },
+            {
+              "answer": "Olives",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "Q075",
+          "question": "Name something people do at the beach",
+          "position": 3,
+          "source_tab": "General - Family Game Night",
+          "source_note": "Source: questions.template.csv | Estimated / unverified points | Original ID: B31-Q03",
+          "original_stage": "Main 3",
+          "answers": [
+            {
+              "answer": "Swim",
+              "points": 32
+            },
+            {
+              "answer": "Sunbathe",
+              "points": 24
+            },
+            {
+              "answer": "Build sandcastles",
+              "points": 16
+            },
+            {
+              "answer": "Surf",
+              "points": 12
+            },
+            {
+              "answer": "Read a book",
+              "points": 10
+            },
+            {
+              "answer": "Play volleyball",
+              "points": 6
+            }
+          ]
+        },
+        {
+          "id": "Q067",
+          "question": "Name something that becomes much louder when everyone else is asleep",
+          "position": 4,
+          "source_tab": "Funny - Daily Chaos",
+          "source_note": "Source: questions.funny-everyday.estimated.csv | Estimated / unverified points | Original ID: B16-Q03",
+          "original_stage": "Main 3",
+          "answers": [
+            {
+              "answer": "Snack wrapper",
+              "points": 30
+            },
+            {
+              "answer": "Creaky floor",
+              "points": 24
+            },
+            {
+              "answer": "Microwave beep",
+              "points": 18
+            },
+            {
+              "answer": "Cough",
+              "points": 14
+            },
+            {
+              "answer": "Toilet flush",
+              "points": 9
+            },
+            {
+              "answer": "Dropped keys",
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "Q071",
+          "question": "Name an everyday object that is surprisingly hard to open quietly",
+          "position": 5,
+          "source_tab": "Funny - Daily Chaos",
+          "source_note": "Source: questions.funny-everyday.estimated.csv | Estimated / unverified points | Original ID: B16-Q07",
+          "original_stage": "Fast 4",
+          "answers": [
+            {
+              "answer": "Chips bag",
+              "points": 32
+            },
+            {
+              "answer": "Squeaky door",
+              "points": 24
+            },
+            {
+              "answer": "Soda can",
+              "points": 18
+            },
+            {
+              "answer": "Candy wrapper",
+              "points": 12
+            },
+            {
+              "answer": "Garage door",
+              "points": 9
+            },
+            {
+              "answer": "Velcro strap",
+              "points": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game": "funny-general-04",
+      "title": "Family game night",
+      "theme": "Funny / General",
+      "mode": "fast_money",
+      "filename": "funny-general-04.fast-money.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q076",
+          "question": "Name an animal people keep as a pet",
+          "position": 1,
+          "source_tab": "General - Family Game Night",
+          "source_note": "Source: questions.fast-money.template.csv | Estimated / unverified points | Original ID: B15-Q01",
+          "original_stage": "Fast 1",
+          "answers": [
+            {
+              "answer": "Dog",
+              "points": 45
+            },
+            {
+              "answer": "Cat",
+              "points": 35
+            },
+            {
+              "answer": "Fish",
+              "points": 12
+            },
+            {
+              "answer": "Bird",
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q077",
+          "question": "Name something people eat for breakfast",
+          "position": 2,
+          "source_tab": "General - Family Game Night",
+          "source_note": "Source: questions.fast-money.template.csv | Estimated / unverified points | Original ID: B15-Q02",
+          "original_stage": "Fast 2",
+          "answers": [
+            {
+              "answer": "Eggs",
+              "points": 40
+            },
+            {
+              "answer": "Cereal",
+              "points": 30
+            },
+            {
+              "answer": "Toast",
+              "points": 20
+            },
+            {
+              "answer": "Pancakes",
+              "points": 10
+            }
+          ]
+        },
+        {
+          "id": "Q078",
+          "question": "Name something you take when it rains",
+          "position": 3,
+          "source_tab": "General - Family Game Night",
+          "source_note": "Source: questions.fast-money.template.csv | Estimated / unverified points | Original ID: B15-Q03",
+          "original_stage": "Fast 3",
+          "answers": [
+            {
+              "answer": "Umbrella",
+              "points": 55
+            },
+            {
+              "answer": "Raincoat",
+              "points": 30
+            },
+            {
+              "answer": "Boots",
+              "points": 15
+            }
+          ]
+        },
+        {
+          "id": "Q079",
+          "question": "Name a place where people wait in line",
+          "position": 4,
+          "source_tab": "General - Family Game Night",
+          "source_note": "Source: questions.fast-money.template.csv | Estimated / unverified points | Original ID: B15-Q04",
+          "original_stage": "Fast 4",
+          "answers": [
+            {
+              "answer": "Store",
+              "points": 40
+            },
+            {
+              "answer": "Amusement park",
+              "points": 30
+            },
+            {
+              "answer": "Airport",
+              "points": 20
+            },
+            {
+              "answer": "Bank",
+              "points": 10
+            }
+          ]
+        },
+        {
+          "id": "Q080",
+          "question": "Name something people lose",
+          "position": 5,
+          "source_tab": "General - Family Game Night",
+          "source_note": "Source: questions.fast-money.template.csv | Estimated / unverified points | Original ID: B15-Q05",
+          "original_stage": "Fast 5",
+          "answers": [
+            {
+              "answer": "Keys",
+              "points": 45
+            },
+            {
+              "answer": "Phone",
+              "points": 30
+            },
+            {
+              "answer": "Wallet",
+              "points": 20
+            },
+            {
+              "answer": "Glasses",
+              "points": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

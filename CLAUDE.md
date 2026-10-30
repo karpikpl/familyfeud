@@ -9,7 +9,7 @@ npm install          # one-time
 npm run build        # tsc → dist/
 npm test             # build + node --test tests/*.test.js
 npm start            # node dist/server.js  (must run build first)
-npm run dev          # tsc -w + nodemon on dist/, public/, questions.csv
+npm run dev          # tsc -w + nodemon on dist/, public/, questions/
 ```
 
 Tests use Node's built-in runner. There is no linter or separate frontend build — `public/` is plain HTML/CSS/JS served as-is. Static frontend changes are picked up on a browser reload (no rebuild needed). TypeScript changes need `npm run build` (or `npm run dev`).
@@ -50,9 +50,9 @@ There's no schema versioning beyond defensive backfills. If you need a structura
 
 ### CSV → questions
 
-`src/csv.ts` parses the question CSV (columns: `question`, `answer`, `points`). Rows with the same `question` text are grouped into one `Question`; answers are sorted highest-points first. Saved state wins over CSV contents on boot. The admin lists real `.csv` files in the project root through `list_csv_files`; `select_csv` and `reload_csv` validate filenames against this list before loading. Standard and Fast Money persist separate filenames and question banks. Selecting/reloading Standard clears its round, not team names or scores; Fast Money clears only its own progress.
+`src/csv.ts` parses the question CSV (columns: `question`, `answer`, `points`). Rows with the same `question` text are grouped into one `Question`; answers are sorted highest-points first. Saved state wins over CSV contents on boot. The admin lists real `.csv` files directly inside `questions/` through `list_csv_files`; `select_csv` and `reload_csv` validate filenames against this list before loading. Subfolders such as `questions/drafts/` are not selectable. Standard and Fast Money persist separate filenames and question banks. Selecting/reloading Standard clears its round, not team names or scores; Fast Money clears only its own progress.
 
-The CSV path resolves in `src/server.ts` as: `questions.csv` if it exists, else `questions.template.csv`. `questions.csv` is gitignored — host-specific edits stay local. `questions.template.csv` is the committed starter set; copy it to `questions.csv` to customize without dirtying the repo.
+On a fresh game, `src/server.ts` loads the first alphabetically sorted CSV in `questions/` that does not end in `.fast-money.csv`; if none exists, it starts empty. Root-level CSVs are not loaded. `questions/local*.csv` is gitignored for host-specific banks. Reviewed climbing and themed exports and their provenance are in `questions/`; unfinished Fast Money sets stay in `questions/drafts/`.
 
 `reset_game` rebuilds state while preserving both CSV selections/question banks, team names, audio and instructions. `reload_csv` instead delegates to `setQuestions` or `loadFastMoney` and preserves Standard scores.
 

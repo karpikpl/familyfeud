@@ -457,11 +457,15 @@ test("CSV catalog permits only real CSV files in its directory, and rejects malf
     fs.writeFileSync(path.join(dir, "good.csv"), "question,answer,points\nQ,A,10\n");
     fs.writeFileSync(path.join(dir, "notes.txt"), "not a question file");
     fs.mkdirSync(path.join(dir, "folder.csv"));
+    fs.mkdirSync(path.join(dir, "drafts"));
+    fs.writeFileSync(path.join(dir, "drafts", "unfinished.csv"), "question,answer,points\nQ,A,10\n");
     fs.symlinkSync(path.join(dir, "good.csv"), path.join(dir, "link.csv"));
     assert.deepEqual(csv.listQuestionFiles(dir), ["good.csv"]);
     assert.equal(csv.loadQuestionFile(dir, "good.csv")[0].answers[0].points, 10);
     assert.throws(() => csv.loadQuestionFile(dir, "../good.csv"), /server's list/);
     assert.throws(() => csv.loadQuestionFile(dir, "link.csv"), /server's list/);
+    assert.throws(() => csv.loadQuestionFile(dir, "drafts/unfinished.csv"), /server's list/);
+    assert.deepEqual(csv.listQuestionFiles(path.join(dir, "missing")), []);
     fs.writeFileSync(path.join(dir, "bad.csv"), "question,answer,points\nQ,A,-1\n");
     assert.throws(() => csv.loadQuestionFile(dir, "bad.csv"), /whole-number/);
     fs.writeFileSync(path.join(dir, "bad.csv"), "question,answer\nQ,A\n");

@@ -1,0 +1,1926 @@
+{
+  "source_workbook": ".collected/Climber-Survey-Review-groupped.xlsx",
+  "source_sha256": "cb653f11d32e2c39f3f9eab802ac67e5f2d68ce5eba8c837ed5695149118230a",
+  "scoring": "Round merged included response counts / nonblank question responses * 100, half up. Exclusions remain in the denominator; rounded boards need not total 100.",
+  "ordering": "Position where provided; otherwise workbook question order. Answers sorted by points descending.",
+  "inline_merges": [
+    {
+      "rows": [
+        45,
+        52
+      ],
+      "answer": "Eat snacks"
+    },
+    {
+      "rows": [
+        60,
+        61
+      ],
+      "answer": "Allez! / Ale!"
+    },
+    {
+      "rows": [
+        93,
+        98
+      ],
+      "answer": "A granola bar"
+    },
+    {
+      "rows": [
+        121,
+        122
+      ],
+      "answer": "This is so hard / This is not a 5.10"
+    },
+    {
+      "rows": [
+        145,
+        147,
+        150
+      ],
+      "answer": "Climbing a certain level"
+    },
+    {
+      "rows": [
+        156,
+        159
+      ],
+      "answer": "Crowd"
+    },
+    {
+      "rows": [
+        193,
+        196
+      ],
+      "answer": "An overhang"
+    },
+    {
+      "rows": [
+        224,
+        225,
+        227
+      ],
+      "answer": "Unsupervised children / Free-range children / Kids"
+    }
+  ],
+  "sets": [
+    {
+      "label": "1",
+      "mode": "standard",
+      "filename": "climbing-01.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q01",
+          "question": "Name a climbing hold you like to use",
+          "respondents": 14,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Jug",
+              "responses": 6,
+              "source_rows": [
+                5
+              ],
+              "points": 43
+            },
+            {
+              "answer": "Crimp",
+              "responses": 3,
+              "source_rows": [
+                6
+              ],
+              "points": 21
+            },
+            {
+              "answer": "Pinch",
+              "responses": 2,
+              "source_rows": [
+                7
+              ],
+              "points": 14
+            },
+            {
+              "answer": "Sloper",
+              "responses": 2,
+              "source_rows": [
+                8
+              ],
+              "points": 14
+            },
+            {
+              "answer": "Side pull",
+              "responses": 1,
+              "source_rows": [
+                9
+              ],
+              "points": 7
+            }
+          ]
+        },
+        {
+          "id": "Q09",
+          "question": "Name a type of climbing you find most exciting",
+          "respondents": 14,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Multi-pitch",
+              "responses": 4,
+              "source_rows": [
+                53
+              ],
+              "points": 29
+            },
+            {
+              "answer": "Bouldering",
+              "responses": 3,
+              "source_rows": [
+                54
+              ],
+              "points": 21
+            },
+            {
+              "answer": "Sport climbing",
+              "responses": 3,
+              "source_rows": [
+                55
+              ],
+              "points": 21
+            },
+            {
+              "answer": "Trad climbing",
+              "responses": 3,
+              "source_rows": [
+                56
+              ],
+              "points": 21
+            },
+            {
+              "answer": "Top-rope climbing",
+              "responses": 1,
+              "source_rows": [
+                57
+              ],
+              "points": 7
+            }
+          ]
+        },
+        {
+          "id": "Q10",
+          "question": "What’s shouts someone may hear at the crag?",
+          "respondents": 13,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Take!",
+              "responses": 7,
+              "source_rows": [
+                58
+              ],
+              "points": 54
+            },
+            {
+              "answer": "Come on!",
+              "responses": 2,
+              "source_rows": [
+                59
+              ],
+              "points": 15
+            },
+            {
+              "answer": "Allez! / Ale!",
+              "responses": 2,
+              "source_rows": [
+                60,
+                61
+              ],
+              "points": 15
+            },
+            {
+              "answer": "<Explative>",
+              "responses": 1,
+              "source_rows": [
+                62
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Nice!",
+              "responses": 1,
+              "source_rows": [
+                63
+              ],
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q13",
+          "question": "Name something you might see at an indoor climbing gym.",
+          "respondents": 13,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Colorful holds",
+              "responses": 6,
+              "source_rows": [
+                74
+              ],
+              "points": 46
+            },
+            {
+              "answer": "A training board",
+              "responses": 3,
+              "source_rows": [
+                75
+              ],
+              "points": 23
+            },
+            {
+              "answer": "Running kids",
+              "responses": 2,
+              "source_rows": [
+                76
+              ],
+              "points": 15
+            },
+            {
+              "answer": "A crowd",
+              "responses": 1,
+              "source_rows": [
+                77
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Autobelay",
+              "responses": 1,
+              "source_rows": [
+                78
+              ],
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q16",
+          "question": "Name a snack climbers bring to the crag or gym.",
+          "respondents": 13,
+          "position": null,
+          "answers": [
+            {
+              "answer": "A granola bar",
+              "responses": 5,
+              "source_rows": [
+                93,
+                98
+              ],
+              "points": 38
+            },
+            {
+              "answer": "Trail mix",
+              "responses": 3,
+              "source_rows": [
+                94
+              ],
+              "points": 23
+            },
+            {
+              "answer": "A sandwich",
+              "responses": 2,
+              "source_rows": [
+                95
+              ],
+              "points": 15
+            },
+            {
+              "answer": "Cheese",
+              "responses": 1,
+              "source_rows": [
+                96
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Chocolate",
+              "responses": 1,
+              "source_rows": [
+                97
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Nerds clusters",
+              "responses": 1,
+              "source_rows": [
+                99
+              ],
+              "points": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "1FM",
+      "mode": "fast_money",
+      "filename": "climbing-01.fast-money.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q05",
+          "question": "Name a climber you have watched in a film, online video, or competition.",
+          "respondents": 14,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Janja Garnbret",
+              "responses": 3,
+              "source_rows": [
+                27
+              ],
+              "points": 21
+            },
+            {
+              "answer": "Adam Ondra",
+              "responses": 2,
+              "source_rows": [
+                28
+              ],
+              "points": 14
+            },
+            {
+              "answer": "Alex Honnold",
+              "responses": 2,
+              "source_rows": [
+                29
+              ],
+              "points": 14
+            },
+            {
+              "answer": "Tommy Caldwell",
+              "responses": 2,
+              "source_rows": [
+                30
+              ],
+              "points": 14
+            },
+            {
+              "answer": "Brooke Raboutou",
+              "responses": 1,
+              "source_rows": [
+                31
+              ],
+              "points": 7
+            },
+            {
+              "answer": "Colin Haley",
+              "responses": 1,
+              "source_rows": [
+                32
+              ],
+              "points": 7
+            },
+            {
+              "answer": "Emily Harrington",
+              "responses": 1,
+              "source_rows": [
+                33
+              ],
+              "points": 7
+            },
+            {
+              "answer": "Jimmy Webb",
+              "responses": 1,
+              "source_rows": [
+                34
+              ],
+              "points": 7
+            },
+            {
+              "answer": "Pete Whittaker",
+              "responses": 1,
+              "source_rows": [
+                35
+              ],
+              "points": 7
+            }
+          ]
+        },
+        {
+          "id": "Q11",
+          "question": "Name an item someone might discover they forgot when arriving at a climb",
+          "respondents": 13,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Climbing shoes",
+              "responses": 5,
+              "source_rows": [
+                64
+              ],
+              "points": 38
+            },
+            {
+              "answer": "Harness",
+              "responses": 3,
+              "source_rows": [
+                65
+              ],
+              "points": 23
+            },
+            {
+              "answer": "Water bottle",
+              "responses": 3,
+              "source_rows": [
+                66
+              ],
+              "points": 23
+            },
+            {
+              "answer": "Chalk bag",
+              "responses": 2,
+              "source_rows": [
+                67
+              ],
+              "points": 15
+            }
+          ]
+        },
+        {
+          "id": "Q20",
+          "question": "Name a piece of climbing equipment.",
+          "respondents": 12,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Rope",
+              "responses": 4,
+              "source_rows": [
+                112
+              ],
+              "points": 33
+            },
+            {
+              "answer": "Helmet",
+              "responses": 3,
+              "source_rows": [
+                113
+              ],
+              "points": 25
+            },
+            {
+              "answer": "Harness",
+              "responses": 2,
+              "source_rows": [
+                114
+              ],
+              "points": 17
+            },
+            {
+              "answer": "Cam",
+              "responses": 1,
+              "source_rows": [
+                115
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Carabiner",
+              "responses": 1,
+              "source_rows": [
+                116
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Quickdraw",
+              "responses": 1,
+              "source_rows": [
+                117
+              ],
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q21",
+          "question": "What’s a common thing climbers say when climbing?",
+          "respondents": 12,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Take!",
+              "responses": 7,
+              "source_rows": [
+                118
+              ],
+              "points": 58
+            },
+            {
+              "answer": "Climbing is stupid",
+              "responses": 2,
+              "source_rows": [
+                119
+              ],
+              "points": 17
+            },
+            {
+              "answer": "This is so hard / This is not a 5.10",
+              "responses": 2,
+              "source_rows": [
+                121,
+                122
+              ],
+              "points": 17
+            },
+            {
+              "answer": "\"Oh that's where it is\"",
+              "responses": 1,
+              "source_rows": [
+                120
+              ],
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q22",
+          "question": "What you can use a crash pad for?",
+          "respondents": 12,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Bouldering",
+              "responses": 5,
+              "source_rows": [
+                123
+              ],
+              "points": 42
+            },
+            {
+              "answer": "Sitting on during a break",
+              "responses": 4,
+              "source_rows": [
+                124
+              ],
+              "points": 33
+            },
+            {
+              "answer": "Portable couch and home furnu",
+              "responses": 1,
+              "source_rows": [
+                125
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Sleeping pad",
+              "responses": 1,
+              "source_rows": [
+                126
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Woodland erotica",
+              "responses": 1,
+              "source_rows": [
+                127
+              ],
+              "points": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "2",
+      "mode": "standard",
+      "filename": "climbing-02.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q08",
+          "question": "What activity besides climbing people do in the crag?",
+          "respondents": 14,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Take a photo",
+              "responses": 3,
+              "source_rows": [
+                42
+              ],
+              "points": 21
+            },
+            {
+              "answer": "Warm up",
+              "responses": 2,
+              "source_rows": [
+                43
+              ],
+              "points": 14
+            },
+            {
+              "answer": "Eat snacks",
+              "responses": 2,
+              "source_rows": [
+                45,
+                52
+              ],
+              "points": 14
+            },
+            {
+              "answer": "Belay",
+              "responses": 1,
+              "source_rows": [
+                44
+              ],
+              "points": 7
+            },
+            {
+              "answer": "Find a place to put my backpack and then put on my harmess",
+              "responses": 1,
+              "source_rows": [
+                46
+              ],
+              "points": 7
+            },
+            {
+              "answer": "Find a route",
+              "responses": 1,
+              "source_rows": [
+                47
+              ],
+              "points": 7
+            },
+            {
+              "answer": "Guess from topo what thè hell is that route",
+              "responses": 1,
+              "source_rows": [
+                48
+              ],
+              "points": 7
+            },
+            {
+              "answer": "Put on climbing shoes",
+              "responses": 1,
+              "source_rows": [
+                49
+              ],
+              "points": 7
+            },
+            {
+              "answer": "Slackline/highline",
+              "responses": 1,
+              "source_rows": [
+                50
+              ],
+              "points": 7
+            },
+            {
+              "answer": "Smoke weed",
+              "responses": 1,
+              "source_rows": [
+                51
+              ],
+              "points": 7
+            }
+          ]
+        },
+        {
+          "id": "Q12",
+          "question": "Name a concrete problem that might interrupt a climb.",
+          "respondents": 13,
+          "position": null,
+          "answers": [
+            {
+              "answer": "It starts raining",
+              "responses": 7,
+              "source_rows": [
+                68
+              ],
+              "points": 54
+            },
+            {
+              "answer": "Wasps / Animals",
+              "responses": 2,
+              "source_rows": [
+                69
+              ],
+              "points": 15
+            },
+            {
+              "answer": "Arms get pumped",
+              "responses": 1,
+              "source_rows": [
+                70
+              ],
+              "points": 8
+            },
+            {
+              "answer": "pop a pulley",
+              "responses": 1,
+              "source_rows": [
+                71
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Stuck rope",
+              "responses": 1,
+              "source_rows": [
+                72
+              ],
+              "points": 8
+            },
+            {
+              "answer": "You fall",
+              "responses": 1,
+              "source_rows": [
+                73
+              ],
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q18",
+          "question": "What’s a climber likely to do after finishing a route?",
+          "respondents": 13,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Celebrate",
+              "responses": 5,
+              "source_rows": [
+                103
+              ],
+              "points": 38
+            },
+            {
+              "answer": "Post on Instagram",
+              "responses": 3,
+              "source_rows": [
+                104
+              ],
+              "points": 23
+            },
+            {
+              "answer": "Rest",
+              "responses": 3,
+              "source_rows": [
+                105
+              ],
+              "points": 23
+            },
+            {
+              "answer": "Belay",
+              "responses": 2,
+              "source_rows": [
+                106
+              ],
+              "points": 15
+            }
+          ]
+        },
+        {
+          "id": "Q19",
+          "question": "What’s an important quality for a climbing partner?",
+          "respondents": 12,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Trustworthiness",
+              "responses": 5,
+              "source_rows": [
+                107
+              ],
+              "points": 42
+            },
+            {
+              "answer": "Good communication",
+              "responses": 3,
+              "source_rows": [
+                108
+              ],
+              "points": 25
+            },
+            {
+              "answer": "Patience",
+              "responses": 2,
+              "source_rows": [
+                109
+              ],
+              "points": 17
+            },
+            {
+              "answer": "Encouragement",
+              "responses": 1,
+              "source_rows": [
+                110
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Safety",
+              "responses": 1,
+              "source_rows": [
+                111
+              ],
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q25",
+          "question": "What’s the best part of outdoor climbing?",
+          "respondents": 12,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Real rock",
+              "responses": 4,
+              "source_rows": [
+                137
+              ],
+              "points": 33
+            },
+            {
+              "answer": "Climbing with friends",
+              "responses": 3,
+              "source_rows": [
+                138
+              ],
+              "points": 25
+            },
+            {
+              "answer": "Being in nature",
+              "responses": 2,
+              "source_rows": [
+                139
+              ],
+              "points": 17
+            },
+            {
+              "answer": "Longer routes",
+              "responses": 1,
+              "source_rows": [
+                140
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Sending",
+              "responses": 1,
+              "source_rows": [
+                141
+              ],
+              "points": 8
+            },
+            {
+              "answer": "The views",
+              "responses": 1,
+              "source_rows": [
+                142
+              ],
+              "points": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "2FM",
+      "mode": "fast_money",
+      "filename": "climbing-02.fast-money.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q03",
+          "question": "Name a specific outdoor climbing destination in the United States that you would like to visit",
+          "respondents": 14,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Yosemite",
+              "responses": 5,
+              "source_rows": [
+                17
+              ],
+              "points": 36
+            },
+            {
+              "answer": "Red River Gorge",
+              "responses": 3,
+              "source_rows": [
+                18
+              ],
+              "points": 21
+            },
+            {
+              "answer": "Red Rocks",
+              "responses": 2,
+              "source_rows": [
+                19
+              ],
+              "points": 14
+            },
+            {
+              "answer": "Chattanooga",
+              "responses": 1,
+              "source_rows": [
+                20
+              ],
+              "points": 7
+            },
+            {
+              "answer": "Hueco Tanks",
+              "responses": 1,
+              "source_rows": [
+                21
+              ],
+              "points": 7
+            },
+            {
+              "answer": "I don't want to visit the US",
+              "responses": 1,
+              "source_rows": [
+                22
+              ],
+              "points": 7
+            },
+            {
+              "answer": "Joe's Valley",
+              "responses": 1,
+              "source_rows": [
+                23
+              ],
+              "points": 7
+            }
+          ]
+        },
+        {
+          "id": "Q14",
+          "question": "What’s a common climbing injury or sore spot?",
+          "respondents": 13,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Finger pain (pulley)",
+              "responses": 8,
+              "source_rows": [
+                79
+              ],
+              "points": 62
+            },
+            {
+              "answer": "A sore shoulder",
+              "responses": 2,
+              "source_rows": [
+                80
+              ],
+              "points": 15
+            },
+            {
+              "answer": "Flapper",
+              "responses": 2,
+              "source_rows": [
+                81
+              ],
+              "points": 15
+            },
+            {
+              "answer": "Elbow",
+              "responses": 1,
+              "source_rows": [
+                82
+              ],
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q23",
+          "question": "What’s something climbers do to warm up?",
+          "respondents": 12,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Climb an easy route",
+              "responses": 7,
+              "source_rows": [
+                128
+              ],
+              "points": 58
+            },
+            {
+              "answer": "Nothing",
+              "responses": 3,
+              "source_rows": [
+                129
+              ],
+              "points": 25
+            },
+            {
+              "answer": "Hangboard",
+              "responses": 1,
+              "source_rows": [
+                130
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Stretch",
+              "responses": 1,
+              "source_rows": [
+                131
+              ],
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q24",
+          "question": "Name a known male climber you have seen in a climbing video or competition.",
+          "respondents": 12,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Adam Ondra",
+              "responses": 5,
+              "source_rows": [
+                132
+              ],
+              "points": 42
+            },
+            {
+              "answer": "Alex Honnold",
+              "responses": 3,
+              "source_rows": [
+                133
+              ],
+              "points": 25
+            },
+            {
+              "answer": "Chris Sharma",
+              "responses": 2,
+              "source_rows": [
+                134
+              ],
+              "points": 17
+            },
+            {
+              "answer": "Daniel Woods",
+              "responses": 1,
+              "source_rows": [
+                135
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Tomoa Narasaki",
+              "responses": 1,
+              "source_rows": [
+                136
+              ],
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q31",
+          "question": "What’s a useful skill for a climber to have?",
+          "respondents": 12,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Good footwork",
+              "responses": 4,
+              "source_rows": [
+                171
+              ],
+              "points": 33
+            },
+            {
+              "answer": "Balance",
+              "responses": 3,
+              "source_rows": [
+                172
+              ],
+              "points": 25
+            },
+            {
+              "answer": "Flexibility",
+              "responses": 2,
+              "source_rows": [
+                173
+              ],
+              "points": 17
+            },
+            {
+              "answer": "Strength",
+              "responses": 2,
+              "source_rows": [
+                174
+              ],
+              "points": 17
+            },
+            {
+              "answer": "Problem-solving",
+              "responses": 1,
+              "source_rows": [
+                175
+              ],
+              "points": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "3",
+      "mode": "standard",
+      "filename": "climbing-03.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q15",
+          "question": "Who’s your favorite climbing YouTuber?",
+          "respondents": 13,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Anna Hazelnutt",
+              "responses": 3,
+              "source_rows": [
+                83
+              ],
+              "points": 23
+            },
+            {
+              "answer": "Magnus Midtbø",
+              "responses": 2,
+              "source_rows": [
+                84
+              ],
+              "points": 15
+            },
+            {
+              "answer": "Adam Ondra",
+              "responses": 1,
+              "source_rows": [
+                85
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Catalyst Climbing",
+              "responses": 1,
+              "source_rows": [
+                86
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Colin Haley",
+              "responses": 1,
+              "source_rows": [
+                87
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Dave Macleod",
+              "responses": 1,
+              "source_rows": [
+                88
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Emil Abrahamsson",
+              "responses": 1,
+              "source_rows": [
+                89
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Mellow",
+              "responses": 1,
+              "source_rows": [
+                90
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Noah Kane",
+              "responses": 1,
+              "source_rows": [
+                91
+              ],
+              "points": 8
+            },
+            {
+              "answer": "None",
+              "responses": 1,
+              "source_rows": [
+                92
+              ],
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q26",
+          "question": "What makes a climber an advanced climber?",
+          "respondents": 11,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Climbing a certain level",
+              "responses": 4,
+              "source_rows": [
+                145,
+                147,
+                150
+              ],
+              "points": 36
+            },
+            {
+              "answer": "Setting up routes",
+              "responses": 2,
+              "source_rows": [
+                143
+              ],
+              "points": 18
+            },
+            {
+              "answer": "Trad climbing",
+              "responses": 2,
+              "source_rows": [
+                144
+              ],
+              "points": 18
+            },
+            {
+              "answer": "At least one traumatic climbing experience in each climbing season",
+              "responses": 1,
+              "source_rows": [
+                146
+              ],
+              "points": 9
+            },
+            {
+              "answer": "Multi-pitch climbing",
+              "responses": 1,
+              "source_rows": [
+                148
+              ],
+              "points": 9
+            },
+            {
+              "answer": "Sending the gnar",
+              "responses": 1,
+              "source_rows": [
+                149
+              ],
+              "points": 9
+            }
+          ]
+        },
+        {
+          "id": "Q28",
+          "question": "Name a problem someone might discover on arriving at an outdoor climbing area.",
+          "respondents": 12,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Crowd",
+              "responses": 8,
+              "source_rows": [
+                156,
+                159
+              ],
+              "points": 67
+            },
+            {
+              "answer": "Need to pee",
+              "responses": 2,
+              "source_rows": [
+                157
+              ],
+              "points": 17
+            },
+            {
+              "answer": "It’s raining",
+              "responses": 1,
+              "source_rows": [
+                158
+              ],
+              "points": 8
+            },
+            {
+              "answer": "You forgot your shoes",
+              "responses": 1,
+              "source_rows": [
+                160
+              ],
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q33",
+          "question": "Name a specific activity a climber might do on a day when they are not climbing.",
+          "respondents": 11,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Go climbing anyway",
+              "responses": 3,
+              "source_rows": [
+                181
+              ],
+              "points": 27
+            },
+            {
+              "answer": "Go for a hike",
+              "responses": 3,
+              "source_rows": [
+                182
+              ],
+              "points": 27
+            },
+            {
+              "answer": "Stretch or do yoga",
+              "responses": 2,
+              "source_rows": [
+                183
+              ],
+              "points": 18
+            },
+            {
+              "answer": "Watch climbing videos",
+              "responses": 2,
+              "source_rows": [
+                184
+              ],
+              "points": 18
+            },
+            {
+              "answer": "Rest at home",
+              "responses": 1,
+              "source_rows": [
+                185
+              ],
+              "points": 9
+            }
+          ]
+        },
+        {
+          "id": "Q37",
+          "question": "Name a brand that makes climbing equipment or climbing shoes.",
+          "respondents": 11,
+          "position": null,
+          "answers": [
+            {
+              "answer": "La Sportiva",
+              "responses": 6,
+              "source_rows": [
+                202
+              ],
+              "points": 55
+            },
+            {
+              "answer": "Petzl",
+              "responses": 3,
+              "source_rows": [
+                203
+              ],
+              "points": 27
+            },
+            {
+              "answer": "Scarpa",
+              "responses": 1,
+              "source_rows": [
+                204
+              ],
+              "points": 9
+            },
+            {
+              "answer": "Simond",
+              "responses": 1,
+              "source_rows": [
+                205
+              ],
+              "points": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "3FM",
+      "mode": "fast_money",
+      "filename": "climbing-03.fast-money.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q27",
+          "question": "Name a physical feature of a climbing route or a thing that can make it difficult.",
+          "respondents": 12,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Steep",
+              "responses": 5,
+              "source_rows": [
+                151
+              ],
+              "points": 42
+            },
+            {
+              "answer": "Slippery",
+              "responses": 4,
+              "source_rows": [
+                152
+              ],
+              "points": 33
+            },
+            {
+              "answer": "Being on vacation for 2 weeks",
+              "responses": 1,
+              "source_rows": [
+                153
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Being tired",
+              "responses": 1,
+              "source_rows": [
+                154
+              ],
+              "points": 8
+            },
+            {
+              "answer": "Reachy",
+              "responses": 1,
+              "source_rows": [
+                155
+              ],
+              "points": 8
+            }
+          ]
+        },
+        {
+          "id": "Q32",
+          "question": "What’s a climber might wear?",
+          "respondents": 11,
+          "position": null,
+          "answers": [
+            {
+              "answer": "A helmet",
+              "responses": 5,
+              "source_rows": [
+                176
+              ],
+              "points": 45
+            },
+            {
+              "answer": "Climbing shoes",
+              "responses": 2,
+              "source_rows": [
+                177
+              ],
+              "points": 18
+            },
+            {
+              "answer": "Favorite t-shirt",
+              "responses": 2,
+              "source_rows": [
+                178
+              ],
+              "points": 18
+            },
+            {
+              "answer": "Leggings",
+              "responses": 1,
+              "source_rows": [
+                179
+              ],
+              "points": 9
+            },
+            {
+              "answer": "No shirt",
+              "responses": 1,
+              "source_rows": [
+                180
+              ],
+              "points": 9
+            }
+          ]
+        },
+        {
+          "id": "Q34",
+          "question": "What’s a common climbing command or call?",
+          "respondents": 11,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Take!",
+              "responses": 6,
+              "source_rows": [
+                186
+              ],
+              "points": 55
+            },
+            {
+              "answer": "<Explative>",
+              "responses": 2,
+              "source_rows": [
+                187
+              ],
+              "points": 18
+            },
+            {
+              "answer": "Off belay!",
+              "responses": 1,
+              "source_rows": [
+                188
+              ],
+              "points": 9
+            },
+            {
+              "answer": "On belay?",
+              "responses": 1,
+              "source_rows": [
+                189
+              ],
+              "points": 9
+            },
+            {
+              "answer": "Slack!",
+              "responses": 1,
+              "source_rows": [
+                190
+              ],
+              "points": 9
+            }
+          ]
+        },
+        {
+          "id": "Q35",
+          "question": "What kind of climbing would you most like to climb?",
+          "respondents": 11,
+          "position": null,
+          "answers": [
+            {
+              "answer": "An overhang",
+              "responses": 3,
+              "source_rows": [
+                193,
+                196
+              ],
+              "points": 27
+            },
+            {
+              "answer": "A multi-pitch wall",
+              "responses": 2,
+              "source_rows": [
+                191
+              ],
+              "points": 18
+            },
+            {
+              "answer": "A slab",
+              "responses": 2,
+              "source_rows": [
+                192
+              ],
+              "points": 18
+            },
+            {
+              "answer": "High-ball",
+              "responses": 2,
+              "source_rows": [
+                194
+              ],
+              "points": 18
+            },
+            {
+              "answer": "A famous big wall",
+              "responses": 1,
+              "source_rows": [
+                195
+              ],
+              "points": 9
+            },
+            {
+              "answer": "A tall cliff",
+              "responses": 1,
+              "source_rows": [
+                197
+              ],
+              "points": 9
+            }
+          ]
+        },
+        {
+          "id": "Q36",
+          "question": "Name a specific task someone might do while preparing for a roped climb.",
+          "respondents": 10,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Check the gear and safety",
+              "responses": 5,
+              "source_rows": [
+                198
+              ],
+              "points": 50
+            },
+            {
+              "answer": "Study the route",
+              "responses": 3,
+              "source_rows": [
+                199
+              ],
+              "points": 30
+            },
+            {
+              "answer": "Warm up",
+              "responses": 1,
+              "source_rows": [
+                200
+              ],
+              "points": 10
+            },
+            {
+              "answer": "Watch someone climb it",
+              "responses": 1,
+              "source_rows": [
+                201
+              ],
+              "points": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "4",
+      "mode": "standard",
+      "filename": "climbing-04.csv",
+      "draft": false,
+      "questions": [
+        {
+          "id": "Q40",
+          "question": "Which climbing technique comes to mind first?",
+          "respondents": 9,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Heel hook",
+              "responses": 3,
+              "source_rows": [
+                213
+              ],
+              "points": 33
+            },
+            {
+              "answer": "Crimping",
+              "responses": 2,
+              "source_rows": [
+                214
+              ],
+              "points": 22
+            },
+            {
+              "answer": "Flagging",
+              "responses": 2,
+              "source_rows": [
+                215
+              ],
+              "points": 22
+            },
+            {
+              "answer": "Gaston",
+              "responses": 1,
+              "source_rows": [
+                216
+              ],
+              "points": 11
+            },
+            {
+              "answer": "Jamming",
+              "responses": 1,
+              "source_rows": [
+                217
+              ],
+              "points": 11
+            }
+          ]
+        },
+        {
+          "id": "Q42",
+          "question": "Which gym behavior would you most like to see banned?",
+          "respondents": 9,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Unsupervised children / Free-range children / Kids",
+              "responses": 3,
+              "source_rows": [
+                224,
+                225,
+                227
+              ],
+              "points": 33
+            },
+            {
+              "answer": "Route hogging",
+              "responses": 2,
+              "source_rows": [
+                221
+              ],
+              "points": 22
+            },
+            {
+              "answer": "Unsolicited beta",
+              "responses": 2,
+              "source_rows": [
+                222
+              ],
+              "points": 22
+            },
+            {
+              "answer": "Excessive shouting / grunting",
+              "responses": 1,
+              "source_rows": [
+                223
+              ],
+              "points": 11
+            },
+            {
+              "answer": "Playing music",
+              "responses": 1,
+              "source_rows": [
+                226
+              ],
+              "points": 11
+            }
+          ]
+        },
+        {
+          "id": "Q44",
+          "question": "What do adults get surprisingly competitive about?",
+          "respondents": 8,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Being busy",
+              "responses": 4,
+              "source_rows": [
+                232
+              ],
+              "points": 50
+            },
+            {
+              "answer": "Parenting",
+              "responses": 2,
+              "source_rows": [
+                233
+              ],
+              "points": 25
+            },
+            {
+              "answer": "Board games",
+              "responses": 1,
+              "source_rows": [
+                234
+              ],
+              "points": 13
+            },
+            {
+              "answer": "Cooking / grilling",
+              "responses": 1,
+              "source_rows": [
+                235
+              ],
+              "points": 13
+            }
+          ]
+        },
+        {
+          "id": "Q45",
+          "question": "Name something that looks easy until you try it.",
+          "respondents": 8,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Baking bread",
+              "responses": 2,
+              "source_rows": [
+                236
+              ],
+              "points": 25
+            },
+            {
+              "answer": "Folding a fitted sheet",
+              "responses": 2,
+              "source_rows": [
+                237
+              ],
+              "points": 25
+            },
+            {
+              "answer": "Answering this question",
+              "responses": 1,
+              "source_rows": [
+                238
+              ],
+              "points": 13
+            },
+            {
+              "answer": "Golf",
+              "responses": 1,
+              "source_rows": [
+                239
+              ],
+              "points": 13
+            },
+            {
+              "answer": "Ice skating",
+              "responses": 1,
+              "source_rows": [
+                240
+              ],
+              "points": 13
+            },
+            {
+              "answer": "Parallel parking",
+              "responses": 1,
+              "source_rows": [
+                241
+              ],
+              "points": 13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "4FM",
+      "mode": "fast_money",
+      "filename": "drafts/climbing-04.fast-money.csv",
+      "draft": true,
+      "questions": [
+        {
+          "id": "Q43",
+          "question": "Name something a climber posts online that their non-climbing friends don't understand.",
+          "respondents": 9,
+          "position": null,
+          "answers": [
+            {
+              "answer": "Grades",
+              "responses": 5,
+              "source_rows": [
+                228
+              ],
+              "points": 56
+            },
+            {
+              "answer": "Beta",
+              "responses": 2,
+              "source_rows": [
+                229
+              ],
+              "points": 22
+            },
+            {
+              "answer": "Hand / skin photos",
+              "responses": 1,
+              "source_rows": [
+                230
+              ],
+              "points": 11
+            },
+            {
+              "answer": "Sends",
+              "responses": 1,
+              "source_rows": [
+                231
+              ],
+              "points": 11
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

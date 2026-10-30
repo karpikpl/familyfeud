@@ -186,7 +186,7 @@ function render(state) {
   if (!q) {
     const empty = document.createElement("div");
     empty.className = "answers__empty";
-    empty.textContent = "No question loaded. Drop a questions.csv in the project root and click Reload CSV.";
+    empty.textContent = "No question loaded. Add a CSV to questions/, refresh the list, and select it.";
     els.answers.appendChild(empty);
     return;
   }
@@ -238,7 +238,7 @@ function renderQuestionFiles() {
     ? "Uses the first five questions. Changing CSV resets Fast Money only; standard scores are kept."
     : "Changing the CSV clears the current round but keeps team names and scores.";
   const count = fast ? (lastState.fastMoney?.questions.length ?? 0) : lastState.questions.length;
-  els.csvInfo.textContent = `${count} questions loaded · ${current ?? "No CSV selected"} · Add CSV files to the project root, then refresh the list.`;
+  els.csvInfo.textContent = `${count} questions loaded · ${current ?? "No CSV selected"} · Add CSV files to questions/, then refresh the list.`;
 }
 
 function truncate(s, n) {

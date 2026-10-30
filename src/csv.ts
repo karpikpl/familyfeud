@@ -57,6 +57,7 @@ export function loadQuestions(path: string, strict = false): Question[] {
 }
 
 export function listQuestionFiles(root: string): string[] {
+  if (!existsSync(root)) return [];
   return readdirSync(root, { withFileTypes: true })
     .filter((entry) => entry.isFile() && entry.name.toLowerCase().endsWith(".csv"))
     .map((entry) => entry.name)

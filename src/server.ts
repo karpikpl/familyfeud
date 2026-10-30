@@ -1,5 +1,4 @@
 import express from "express";
-import fs from "fs";
 import http from "http";
 import path from "path";
 import { Server as IOServer } from "socket.io";
@@ -41,30 +40,27 @@ import { FastMoneyAnswerInput, GameMode, GameState } from "./types";
 
 const ROOT = path.resolve(__dirname, "..");
 const PUBLIC = path.join(ROOT, "public");
-// questions.csv is gitignored (host-specific); fall back to the committed template
-// for fresh checkouts. Either file may be edited and picked up via "Reload CSV".
-const CSV_PATH = (() => {
-  const local = path.join(ROOT, "questions.csv");
-  const template = path.join(ROOT, "questions.template.csv");
-  return fs.existsSync(local) ? local : template;
-})();
+const QUESTIONS_DIR = path.join(ROOT, "questions");
+const DEFAULT_CSV = listQuestionFiles(QUESTIONS_DIR)
+  .find((filename) => !filename.toLowerCase().endsWith(".fast-money.csv")) ?? null;
+const CSV_PATH = DEFAULT_CSV ? path.join(QUESTIONS_DIR, DEFAULT_CSV) : null;
 const DB_PATH = process.env.DB_PATH ?? path.join(ROOT, "familyfeud.db");
 
 const DISPLAY_PORT = Number(process.env.DISPLAY_PORT ?? 3000);
 const ADMIN_PORT = Number(process.env.ADMIN_PORT ?? 4000);
 
 const store = new Store(DB_PATH);
-const questions = loadQuestions(CSV_PATH);
+const questions = CSV_PATH ? loadQuestions(CSV_PATH) : [];
 
 let state: GameState;
 const saved = store.load();
 if (saved) {
-  state = migrateState(saved, path.basename(CSV_PATH));
+  state = migrateState(saved, DEFAULT_CSV);
   console.log(
     `[persist] restored state from ${DB_PATH}: Q${state.currentQuestionIndex + 1}/${state.questions.length}, scores ${state.teams[0].score}/${state.teams[1].score}`
   );
 } else {
-  state = makeInitialState(questions, path.basename(CSV_PATH));
+  state = makeInitialState(questions, DEFAULT_CSV);
   store.save(state);
   console.log(`[persist] no saved state; initialized from CSV at ${DB_PATH}`);
 }
@@ -165,7 +161,7 @@ const GAMEPLAY_COMMANDS = new Set<Cmd["type"]>([
 adminIo.on("connection", (socket) => {
   const sendFiles = () => {
     try {
-      socket.emit("csv_files", listQuestionFiles(ROOT));
+      socket.emit("csv_files", listQuestionFiles(QUESTIONS_DIR));
     } catch (err) {
       console.error("[csv] failed to list question files", err);
       socket.emit("error_msg", "Unable to list CSV files on the server.");
@@ -353,7 +349,7 @@ function handle(cmd: Cmd) {
 }
 
 function selectQuestionFile(filename: string) {
-  const loaded = loadQuestionFile(ROOT, filename);
+  const loaded = loadQuestionFile(QUESTIONS_DIR, filename);
   if (state.mode === "fast_money") loadFastMoney(state, loaded, filename);
   else setQuestions(state, loaded, filename);
 }
@@ -388,6 +384,6 @@ displayServer.listen(DISPLAY_PORT, () => {
 });
 adminServer.listen(ADMIN_PORT, () => {
   console.log(`[admin]   http://localhost:${ADMIN_PORT}  (game master controls — open on phone)`);
-  console.log(`[csv]     ${state.questions.length} question(s) in play (loaded ${questions.length} from ${CSV_PATH})`);
+  console.log(`[csv]     ${state.questions.length} question(s) in play (loaded ${questions.length} from ${CSV_PATH ?? QUESTIONS_DIR})`);
   console.log(`[db]      ${DB_PATH}`);
 });

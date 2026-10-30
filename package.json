@@ -7,7 +7,7 @@
     "build": "tsc",
     "test": "npm run build && node --test tests/*.test.js",
     "start": "node dist/server.js",
-    "dev": "tsc -w & nodemon --watch dist --watch public --watch questions.csv --watch questions.template.csv dist/server.js"
+    "dev": "tsc -w & nodemon --watch dist --watch public --watch questions --ext js,json,html,css,csv dist/server.js"
   },
   "dependencies": {
     "better-sqlite3": "^11.3.0",

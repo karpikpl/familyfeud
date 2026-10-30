@@ -7,9 +7,9 @@ familyfeud.db-journal
 familyfeud.db-wal
 familyfeud.db-shm
 
-# Local question set — copy questions.template.csv to questions.csv and edit.
-# The template stays committed; your host-specific edits don't get checked in.
+# Optional host-specific question bank.
 questions.csv
+questions/local*.csv
 
 # Third-party media — bring your own. The Family Feud theme song is
 # copyrighted by its rightsholders and is not redistributable under our license.

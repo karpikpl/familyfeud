@@ -38,6 +38,30 @@ For phone access on the same Wi-Fi, use `http://<your-mac-ip>:4000`. On macOS, `
 
 ## Docker
 
+### Published image
+
+The **Container image** GitHub Actions workflow builds the existing Dockerfile on
+pushes and pull requests to `main`, or when run manually. Only runs on the default
+branch publish to GHCR using `GITHUB_TOKEN`; pull requests and manual runs on other
+branches build without publishing or logging in to the registry.
+
+Images are published as `ghcr.io/conradchu/familyfeud:latest` and
+`ghcr.io/conradchu/familyfeud:sha-<short-commit>`. Forks use their own lowercase
+owner/repository name. To run the published image with persistent game state:
+
+```bash
+docker run -d --name familyfeud \
+  -p 3000:3000 -p 4000:4000 \
+  -v familyfeud-data:/app/data \
+  ghcr.io/conradchu/familyfeud:latest
+```
+
+The repository must allow GitHub Actions to write packages. New GHCR packages may
+be private; a package administrator can make the package public for anonymous
+pulls, or users can authenticate to GHCR with a token granting `read:packages`.
+
+### Build locally
+
 ```bash
 docker build -t familyfeud .
 docker run -d --name familyfeud \
@@ -48,20 +72,20 @@ docker run -d --name familyfeud \
 
 Open the same audience and admin URLs above. Stop with `docker stop familyfeud`; restart with `docker start familyfeud`. The named volume keeps game state when the container is removed and recreated. This starts a separate game; it does not import your local `familyfeud.db`.
 
-The image runs as a non-root user and includes only the Standard and Fast Money template CSVs, not local questions, databases, or audio. To use your own files, add read-only bind mounts before the final `familyfeud` image name:
+The image runs as a non-root user and includes the playable reviewed climbing and themed CSVs from `questions/`, not drafts, local questions, databases, or audio. To use your own files, add read-only bind mounts before the final `familyfeud` image name:
 
 ```bash
---mount type=bind,src="$(pwd)/questions.csv",dst=/app/questions.csv,readonly
+--mount type=bind,src="$(pwd)/questions",dst=/app/questions,readonly
 --mount type=bind,src="$(pwd)/audio/sfx",dst=/app/audio/sfx,readonly
 ```
 
-Mount additional CSVs as individual files under `/app/` to make them available in the admin dropdown. Create the source files/directories first and make them readable by the container user. Saved state takes precedence over CSV contents; select or reload the CSV in admin to apply changes.
+Place additional CSVs directly inside the mounted `questions/` folder to make them available in the admin dropdown. Subfolders are not scanned. Create the source files/directories first and make them readable by the container user. Saved state takes precedence over CSV contents; select or reload the CSV in admin to apply changes.
 
 Both ports must be free on the host; if you're already running the app locally, use `-p 3001:3000 -p 4001:4000` and open ports 3001/4001 instead. Keep admin access on a trusted network; it has no authentication.
 
 ## Questions CSV
 
-Put question CSV files in the project root, then choose one from the admin's **Question CSV** dropdown. Standard and Fast Money remember separate selections. Format:
+Put question CSV files directly inside `questions/`, then choose one from the admin's **Question CSV** dropdown. Standard and Fast Money remember separate selections. Root-level CSVs and subfolders are not scanned. Format:
 
 ```csv
 question,answer,points
@@ -75,7 +99,68 @@ Name something you find in a kitchen,Stove,22
 - Use **Refresh list** after adding files. **Reload CSV** re-reads the current mode's selected file.
 - Selecting or reloading a Standard CSV clears the current round and unawarded pot, but keeps team names and scores.
 - Selecting or reloading a Fast Money CSV resets Fast Money only. It needs at least five questions; the first five are used.
-- `questions.fast-money.template.csv` is a playable starter with illustrative points, not real survey results.
+- A new game starts with the first alphabetically sorted Standard CSV (a filename not ending in `.fast-money.csv`), or empty if none exists.
+- Saved games retain their existing questions and scores. After replacing the old sets, select a new CSV in each mode; an old saved filename cannot be reloaded once its file is removed.
+- Use `questions/local*.csv` for gitignored host-specific banks.
+
+### Reviewed climbing sets
+
+The climbing CSVs come from `.collected/Climber-Survey-Review-groupped.xlsx`,
+using real climber responses, assigned sets and question exclusions. Inline
+instructions in Answer Review column E are applied, including answer merges
+and wording edits. Unassigned questions are not exported. Earlier unreviewed
+CSV banks have been replaced by these climbing sets and the reviewed themed
+sets below.
+
+All paths below are relative to `questions/`.
+
+| Set | Standard CSV | Fast Money CSV |
+|---|---|---|
+| 1 | `climbing-01.csv` (5 questions) | `climbing-01.fast-money.csv` (5 questions) |
+| 2 | `climbing-02.csv` (5 questions) | `climbing-02.fast-money.csv` (5 questions) |
+| 3 | `climbing-03.csv` (5 questions) | `climbing-03.fast-money.csv` (5 questions) |
+| 4 | `climbing-04.csv` (4 questions) | `drafts/climbing-04.fast-money.csv` (1 question; incomplete) |
+
+Set 4 Fast Money remains a draft and is intentionally absent from the admin
+dropdown and Docker image until it has five questions. The three complete
+Fast Money sets can each be used with both players.
+
+Scores are merged response counts divided by that question's nonblank response
+count, multiplied by 100 and rounded once. Scores are not invented or adjusted
+to make boards total 100. Excluded answers remain in the denominator. This is
+a small sample (up to 14 respondents per question), not a 100-person survey.
+
+`questions/manifest.json` records question IDs, response counts, merged answer
+source rows and the workbook hash. Question order follows Position when present,
+otherwise workbook order. Slash-separated equivalents are a single scoring
+slot; match them to the same survey answer in Fast Money.
+
+### Reviewed Halloween and funny/general sets
+
+`Family-Feud-Themed-Sets-reviewed.xlsx` supplies **seven complete games**:
+three Halloween and four funny/general. Each game has **five Standard questions
+and five Fast Money questions**. All 70 included questions are used exactly once;
+the 27 excluded questions, including reserves, are omitted. Existing climbing
+sets are unchanged.
+
+| Game | Theme | Standard CSV | Fast Money CSV |
+|---|---|---|---|
+| Halloween 01 | Spooky classics | `halloween-01.csv` | `halloween-01.fast-money.csv` |
+| Halloween 02 | Trick-or-treat night | `halloween-02.csv` | `halloween-02.fast-money.csv` |
+| Halloween 03 | Party monsters | `halloween-03.csv` | `halloween-03.fast-money.csv` |
+| Funny General 01 | Everyday absurdities | `funny-general-01.csv` | `funny-general-01.fast-money.csv` |
+| Funny General 02 | Daily mishaps | `funny-general-02.csv` | `funny-general-02.fast-money.csv` |
+| Funny General 03 | Kids, pets and home | `funny-general-03.csv` | `funny-general-03.fast-money.csv` |
+| Funny General 04 | Family game night | `funny-general-04.csv` | `funny-general-04.fast-money.csv` |
+
+Paths are relative to `questions/`. The five original Daily Chaos Fast Money
+questions (Q068-Q072) move into Standard to balance the games; the reviewed
+workbook itself is unchanged. Answer wording and original points are preserved,
+not normalized or replaced with survey estimates. These points are estimated,
+unverified or AI-generated, **not results from our climber survey**.
+
+`questions/themed-manifest.json` records final assignments, original stages,
+exclusions, source caveats and the workbook hash.
 
 ## Game flow
 
