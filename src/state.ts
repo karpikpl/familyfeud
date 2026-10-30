@@ -1,5 +1,5 @@
 import { GameMode, GameState, Question, Round } from "./types";
-import { makeFastMoney } from "./fast-money";
+import { isValidFastMoneySeconds, makeFastMoney } from "./fast-money";
 
 export function makeInitialState(questions: Question[], questionFile: string | null = null): GameState {
   return {
@@ -29,6 +29,11 @@ export function migrateState(state: GameState, defaultQuestionFile: string | nul
   if (!state.mode) state.mode = "standard";
   if (!state.questionFile) state.questionFile = defaultQuestionFile;
   if (!state.fastMoney) state.fastMoney = makeFastMoney();
+  const playerSeconds = state.fastMoney.playerSeconds;
+  state.fastMoney.playerSeconds = [
+    isValidFastMoneySeconds(playerSeconds?.[0]) ? playerSeconds[0] : 20,
+    isValidFastMoneySeconds(playerSeconds?.[1]) ? playerSeconds[1] : 25,
+  ];
   for (const answer of state.fastMoney.answers.flat()) {
     if (!answer.result) {
       answer.result = answer.recorded && answer.text === "Pass"
@@ -257,7 +262,7 @@ export function prevQuestion(state: GameState): void {
 
 export function resetGame(state: GameState, questions: Question[]): GameState {
   const fresh = makeInitialState(questions, state.questionFile);
-  fresh.fastMoney = makeFastMoney(state.fastMoney.questions, state.fastMoney.questionFile);
+  fresh.fastMoney = makeFastMoney(state.fastMoney.questions, state.fastMoney.questionFile, state.fastMoney.playerSeconds);
   return fresh;
 }
 

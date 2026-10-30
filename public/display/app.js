@@ -302,7 +302,7 @@ function updateTimer() {
   els.timer.hidden = endsAt === null;
   if (endsAt === null) return;
   const seconds = Math.max(0, Math.ceil((endsAt - Date.now()) / 1000));
-  els.timerValue.textContent = `0:${String(seconds).padStart(2, "0")}`;
+  els.timerValue.textContent = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
   els.timer.classList.toggle("is-expired", seconds === 0);
 }
 setInterval(updateTimer, 100);

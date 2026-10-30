@@ -134,6 +134,73 @@ test("20/25 second deadlines, navigation, expiry, and phase validation", () => {
   assert.equal(state.fastMoney.endsAt, 30000);
 });
 
+test("custom Fast Money times control each deadline without changing an active run", () => {
+  const state = ready();
+  fm.setFastMoneyTime(state, 0, 75);
+  fm.setFastMoneyTime(state, 1, 90);
+  fm.startFastMoney(state, 1000);
+  assert.equal(state.fastMoney.endsAt, 76000);
+  fm.passFastMoneyQuestion(state, 1500);
+  assert.equal(state.fastMoney.endsAt, 76000);
+  const running = structuredClone(state);
+  assert.throws(() => fm.setFastMoneyTime(state, 0, 120), /not available/);
+  assert.deepEqual(state, running);
+  assert.equal(fm.expireFastMoney(state, 75999), false);
+  assert.equal(fm.expireFastMoney(state, 76000), true);
+  fm.recordFastMoneyAnswers(state, questions.map(() => ({ text: "", answerIndex: 0, points: 0 })));
+  fm.beginFastMoneyReveal(state);
+  for (let i = 0; i < 5; i++) fm.revealNextFastMoneyAnswer(state);
+  fm.nextFastMoneyPlayer(state);
+  fm.startFastMoney(state, 200000);
+  assert.equal(state.fastMoney.endsAt, 290000);
+});
+
+test("Fast Money time settings validate atomically and allow the advertised limits", () => {
+  const state = ready();
+  const before = structuredClone(state);
+  for (const seconds of [0, -1, 601, 1.5, NaN, Infinity, "30", null]) {
+    assert.throws(() => fm.setFastMoneyTime(state, 0, seconds), /whole number/);
+    assert.deepEqual(state, before);
+  }
+  for (const player of [-1, 2, null, "0"]) {
+    assert.throws(() => fm.setFastMoneyTime(state, player, 30), /Invalid Fast Money player/);
+    assert.deepEqual(state, before);
+  }
+  fm.setFastMoneyTime(state, 0, 1);
+  fm.setFastMoneyTime(state, 1, 600);
+  assert.deepEqual(state.fastMoney.playerSeconds, [1, 600]);
+  stateFns.setMode(state, "standard");
+  assert.throws(() => fm.setFastMoneyTime(state, 0, 30), /not available/);
+});
+
+test("custom Fast Money times survive CSV replacement, resets and saved-state migration", () => {
+  const state = ready();
+  fm.setFastMoneyTime(state, 0, 45);
+  fm.setFastMoneyTime(state, 1, 60);
+  fm.resetFastMoney(state);
+  assert.deepEqual(state.fastMoney.playerSeconds, [45, 60]);
+  fm.loadFastMoney(state, questions, "another.csv");
+  assert.deepEqual(state.fastMoney.playerSeconds, [45, 60]);
+  const restored = stateFns.migrateState(JSON.parse(JSON.stringify(state)));
+  assert.deepEqual(restored, state);
+  const reset = stateFns.resetGame(state, state.questions);
+  assert.deepEqual(reset.fastMoney.playerSeconds, [45, 60]);
+  assert.notEqual(reset.fastMoney.playerSeconds, state.fastMoney.playerSeconds);
+});
+
+test("legacy Fast Money times backfill safely without altering an active deadline", () => {
+  const state = ready();
+  fm.startFastMoney(state, 1000);
+  const before = structuredClone(state);
+  delete state.fastMoney.playerSeconds;
+  stateFns.migrateState(state);
+  assert.deepEqual(state, before);
+  state.fastMoney.playerSeconds = [45, -1];
+  stateFns.migrateState(state);
+  assert.deepEqual(state.fastMoney.playerSeconds, [45, 25]);
+  assert.equal(state.fastMoney.endsAt, 21000);
+});
+
 test("survey matches use canonical points, sequential reveals and separate totals", () => {
   const state = ready();
   state.teams[0].score = 250;

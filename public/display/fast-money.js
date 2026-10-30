@@ -34,7 +34,7 @@ function renderFastMoneyDisplay(state) {
   fastDisplay.message.textContent = fm.phase === "asking" ? "ON THE CLOCK" : fm.phase === "scoring" ? "SURVEY SAYS..." : "GET READY";
   fastDisplay.hint.textContent = fm.phase === "asking"
     ? "Five questions. Give your best answers."
-    : fm.phase === "scoring" ? "Answers coming up next." : `${fm.player === 0 ? 20 : 25} seconds · 200 points to win`;
+    : fm.phase === "scoring" ? "Answers coming up next." : `${fm.playerSeconds[fm.player]} seconds · 200 points to win`;
   fastDisplay.board.replaceChildren(...Array.from({ length: 5 }, (_, i) => {
     const row = document.createElement("div");
     row.className = "fast-money__row";

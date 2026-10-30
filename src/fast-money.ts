@@ -1,11 +1,14 @@
 import { FastMoneyAnswer, FastMoneyAnswerInput, FastMoneyPhase, FastMoneyResult, FastMoneyState, GameState, Question } from "./types";
 
-export function makeFastMoney(questions: Question[] = [], questionFile: string | null = null): FastMoneyState {
+export function makeFastMoney(
+  questions: Question[] = [], questionFile: string | null = null, playerSeconds: [number, number] = [20, 25]
+): FastMoneyState {
   const blankAnswers = (): FastMoneyAnswer[] => Array.from({ length: 5 }, () => ({
     result: "answer", text: "", points: 0, answerIndex: null, recorded: false, revealed: false,
   }));
   return {
     questionFile,
+    playerSeconds: [...playerSeconds],
     questions: questions.slice(0, 5).map((q) => ({
       ...q, answers: q.answers.map((a) => ({ ...a, revealed: false })),
     })),
@@ -26,12 +29,23 @@ function requirePhase(state: GameState, phases: FastMoneyPhase[]): FastMoneyStat
   return state.fastMoney;
 }
 
+export function isValidFastMoneySeconds(seconds: unknown): seconds is number {
+  return typeof seconds === "number" && Number.isInteger(seconds) && seconds >= 1 && seconds <= 600;
+}
+
+export function setFastMoneyTime(state: GameState, player: 0 | 1, seconds: number): void {
+  const fm = requirePhase(state, ["setup"]);
+  if (player !== 0 && player !== 1) throw new Error("Invalid Fast Money player.");
+  if (!isValidFastMoneySeconds(seconds)) throw new Error("Time must be a whole number from 1 to 600 seconds.");
+  fm.playerSeconds[player] = seconds;
+}
+
 export function loadFastMoney(state: GameState, questions: Question[], filename: string): void {
   if (questions.length < 5) throw new Error("Fast Money needs a CSV with at least five questions.");
   if (questions.slice(0, 5).some((q) => q.answers.some((a) => a.points > 100))) {
     throw new Error("Fast Money survey points must be between 0 and 100.");
   }
-  state.fastMoney = makeFastMoney(questions, filename);
+  state.fastMoney = makeFastMoney(questions, filename, state.fastMoney.playerSeconds);
 }
 
 export function startFastMoney(state: GameState, now = Date.now()): void {
@@ -40,7 +54,7 @@ export function startFastMoney(state: GameState, now = Date.now()): void {
   fm.phase = "asking";
   fm.questionIndex = 0;
   fm.questionStatus[fm.player].fill("unasked");
-  fm.endsAt = now + (fm.player === 0 ? 20_000 : 25_000);
+  fm.endsAt = now + fm.playerSeconds[fm.player] * 1000;
 }
 
 export function gotoFastMoneyQuestion(state: GameState, index: number, now = Date.now()): void {
@@ -177,5 +191,5 @@ export function editFastMoneyAnswers(state: GameState): void {
 }
 
 export function resetFastMoney(state: GameState): void {
-  state.fastMoney = makeFastMoney(state.fastMoney.questions, state.fastMoney.questionFile);
+  state.fastMoney = makeFastMoney(state.fastMoney.questions, state.fastMoney.questionFile, state.fastMoney.playerSeconds);
 }

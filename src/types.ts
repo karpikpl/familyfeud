@@ -65,6 +65,7 @@ export type FastMoneyAnswerInput = Pick<FastMoneyAnswer, "text" | "points" | "an
 
 export interface FastMoneyState {
   questionFile: string | null;
+  playerSeconds: [number, number];
   questions: Question[];
   player: 0 | 1;
   phase: FastMoneyPhase;

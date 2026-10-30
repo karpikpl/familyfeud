@@ -59,6 +59,15 @@
       </div>
 
       <div class="fm-card" id="fm-setup">
+        <div class="fm-time-settings" role="group" aria-label="Fast Money time limits">
+          <label for="fm-seconds-0">Player 1 (seconds)
+            <input id="fm-seconds-0" type="number" min="1" max="600" step="1" value="20" inputmode="numeric" required />
+          </label>
+          <label for="fm-seconds-1">Player 2 (seconds)
+            <input id="fm-seconds-1" type="number" min="1" max="600" step="1" value="25" inputmode="numeric" required />
+          </label>
+        </div>
+        <p class="game-controls__hint">Time limits save automatically. Set 1–600 seconds per player before starting.</p>
         <strong>Five questions, read by the host</strong>
         <ol class="fm-question-list" id="fm-question-list"></ol>
         <button class="btn btn-primary big" id="fm-start">Start Player 1 · 20s</button>

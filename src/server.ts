@@ -7,7 +7,7 @@ import { listQuestionFiles, loadQuestionFile, loadQuestions } from "./csv";
 import {
   beginFastMoneyReveal, buzzFastMoney, editFastMoneyAnswers, expireFastMoney, gotoFastMoneyQuestion,
   loadFastMoney, nextFastMoneyPlayer, nextFastMoneyQuestion, passFastMoneyQuestion, recordFastMoneyAnswer, recordFastMoneyAnswers, resetFastMoney,
-  revealNextFastMoneyAnswer, startFastMoney, stopFastMoney,
+  revealNextFastMoneyAnswer, setFastMoneyTime, startFastMoney, stopFastMoney,
 } from "./fast-money";
 import { Store } from "./persist";
 import {
@@ -114,6 +114,7 @@ type Cmd =
   | { type: "set_mode"; mode: GameMode }
   | { type: "select_csv"; mode: GameMode; filename: string }
   | { type: "fm_start" }
+  | { type: "fm_set_time"; player: 0 | 1; seconds: number }
   | { type: "fm_question"; index: number }
   | { type: "fm_pass" }
   | { type: "fm_next" }
@@ -209,6 +210,9 @@ function handle(cmd: Cmd) {
       break;
     case "fm_start":
       startFastMoney(state);
+      break;
+    case "fm_set_time":
+      setFastMoneyTime(state, cmd.player, cmd.seconds);
       break;
     case "fm_question":
       gotoFastMoneyQuestion(state, cmd.index);

@@ -10,6 +10,7 @@ const fmEls = {
   revealing: document.getElementById("fm-revealing"),
   questions: document.getElementById("fm-question-list"),
   start: document.getElementById("fm-start"),
+  timeInputs: [0, 1].map((player) => document.getElementById(`fm-seconds-${player}`)),
   questionNumber: document.getElementById("fm-question-number"),
   question: document.getElementById("fm-current-question"),
   priorAnswer: document.getElementById("fm-prior-answer"),
@@ -49,8 +50,12 @@ function renderFastMoney(state) {
     li.textContent = q.text;
     return li;
   }));
-  fmEls.start.textContent = `Start Player ${fm.player + 1} · ${fm.player === 0 ? 20 : 25}s`;
-  fmEls.start.disabled = fm.questions.length !== 5;
+  fmEls.timeInputs.forEach((input, player) => {
+    input.disabled = fm.phase !== "setup";
+    if (document.activeElement !== input) input.value = String(fm.playerSeconds[player]);
+  });
+  fmEls.start.textContent = `Start Player ${fm.player + 1} · ${fm.playerSeconds[fm.player]}s`;
+  fmEls.nextPlayer.textContent = `Prepare Player 2 · ${fm.playerSeconds[1]}s`;
   const statuses = fm.questionStatus?.[fm.player] ?? [];
   const remaining = statuses.filter((status) => status !== "answered").length;
   const revisiting = statuses[fm.questionIndex] === "passed";
@@ -177,10 +182,13 @@ function saveFastMoneyAnswers() {
 function updateFastMoneyTimer(state) {
   const fm = state?.fastMoney;
   if (!fm) return;
+  fmEls.start.disabled = fm.phase !== "setup" || fm.questions.length !== 5 ||
+    fmEls.timeInputs.some((input) => !input.validity.valid);
   const seconds = fm.endsAt === null
-    ? (fm.player === 0 ? 20 : 25)
+    ? fm.playerSeconds[fm.player]
     : Math.max(0, Math.ceil((fm.endsAt - Date.now()) / 1000));
-  fmEls.timer.textContent = fm.phase === "asking" || fm.phase === "setup" ? `0:${String(seconds).padStart(2, "0")}` : "—";
+  fmEls.timer.textContent = fm.phase === "asking" || fm.phase === "setup"
+    ? `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}` : "—";
   const expired = fm.phase === "asking" && seconds === 0;
   fmEls.prev.disabled = fm.questionIndex === 0 || expired;
   fmEls.next.disabled = expired;
@@ -188,7 +196,17 @@ function updateFastMoneyTimer(state) {
   fmEls.stop.textContent = expired ? "Time's up · Enter answers" : "Finish questions / Enter answers";
 }
 
-fmEls.start.onclick = () => send({ type: "fm_start" });
+fmEls.timeInputs.forEach((input, player) => {
+  input.oninput = () => {
+    updateFastMoneyTimer(lastState);
+  };
+  input.onchange = () => {
+    if (input.reportValidity()) send({ type: "fm_set_time", player, seconds: input.valueAsNumber });
+  };
+});
+fmEls.start.onclick = () => {
+  if (fmEls.timeInputs.every((input) => input.reportValidity())) send({ type: "fm_start" });
+};
 fmEls.prev.onclick = () => send({ type: "fm_question", index: lastState.fastMoney.questionIndex - 1 });
 fmEls.next.onclick = () => send({ type: "fm_next" });
 fmEls.buzz.onclick = () => send({ type: "fm_buzz" });
